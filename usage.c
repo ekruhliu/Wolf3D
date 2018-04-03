@@ -16,3 +16,8 @@ void	usage(void)
 {
 	ft_putstr("\033[1;31musage: ./wolf3d MAP NAME\n\e[m");
 }
+
+void	error(void)
+{
+	ft_putstr("\033[1;31mERROR\n\e[m");
+}

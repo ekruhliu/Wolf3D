@@ -12,141 +12,37 @@
 
 #include "wolf.h"
 
-#define mapWidthe 24
-#define mapHeight 24
-
-// int worldMap[mapWidthe][mapHeight]=
-// {
-// 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,2,2,2,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-// 	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,3,0,0,0,3,0,0,0,1},
-// 	{1,0,0,0,0,0,2,0,0,0,2,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,2,2,0,2,2,0,0,0,0,3,0,3,0,3,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,0,0,0,0,5,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,0,4,0,0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,0,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,4,4,4,4,4,4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-// 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-// };
-
-void	map_widthe(char *argv, t_pool *pool)
+int		set_rgb(unsigned int r, unsigned int g, unsigned int b)
 {
-	int		widthe;
-	int		fd;
-	char	**tab;
-
-	widthe = 0;
-	fd = open(argv, O_RDONLY);
-	if (get_next_line(fd, &argv) <= 0)
-	{
-		error();
-		exit(1);
-	}
-	// free(argv);
-	tab = ft_strsplit(argv, ' ');
-	while (tab[widthe])
-		widthe++;
-	while (get_next_line(fd, &argv) > 0)
-		free(argv);
-	// free(argv);
-	close(fd);
-	pool->len_map_x = widthe;
+	return ((r << 16) | (g << 8) | b);
 }
 
-void	map_height(char *argv, t_pool *pool)
+int		get_col_by_i(void *pixels, int i)
 {
-	int fd;
-	int height;
+	unsigned char	*tmp;
 
-	height = 0;
-	fd = open(argv, O_RDONLY);
-	while (get_next_line(fd, &argv) > 0)
-	{
-		height++;
-		free(argv);
-	}
-	// free(argv);
-	close(fd);
-	pool->len_map_y = height;
+	tmp = (unsigned char*)pixels;
+	return (set_rgb(tmp[i + 2], tmp[i + 1], tmp[i]));
 }
 
-char		*read_file(char *argv)
+void	get_textures(int *textures, const char *file)
 {
-	char	*res;
-	char	*tmp;
-	int		read_res;
-	int		fd;
-
-	fd = open(argv, O_RDONLY);
-	res = ft_strdup("\0");
-	while ((read_res = get_next_line(fd, &argv)) > 0)
-	{
-		tmp = ft_strdup(res);
-		free(res);
-		res = ft_strjoin(tmp, " ");
-		free(tmp);
-		tmp = ft_strdup(res);
-		free(res);
-		res = ft_strjoin(tmp, argv);
-		free(tmp);
-		free(argv);
-	}
-	// free(argv);
-	close(fd);
-	return (res);
-}
-
-void	create_map(char *argv, t_pool *pool)
-{
-	int		i;
-	int		n;
-	char	*line;
-	char	**tab;
-	int 	elem = 0;
+	SDL_Surface	*surface;
+	int			i;
+	int			size;
+	int			k;
 
 	i = 0;
-	n = 0;
-	pool->map = (int**)malloc(sizeof(int*) * pool->len_map_y);
-	while (i < pool->len_map_y)
+	k = 0;
+	surface = IMG_Load(file);
+	size = texture_H * texture_W;
+	while (i < size)
 	{
-		pool->map[i] = (int*)malloc(sizeof(int) * pool->len_map_x);
+		textures[i] = get_col_by_i(surface->pixels, k);
+		k += 4;
 		i++;
 	}
-	i = 0;
-	line = read_file(argv);
-	tab = ft_strsplit(line, ' ');
-	while (i < pool->len_map_y)
-	{
-		n = 0;
-		while (n < pool->len_map_x)
-		{
-			pool->map[i][n] = ft_atoi(tab[elem]);
-			elem++;
-			n++;
-		}
-		i++;
-	}
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(line);
+	SDL_FreeSurface(surface);
 }
 
 int	main(int argc, char **argv)
@@ -172,9 +68,10 @@ int	main(int argc, char **argv)
 		SDL_Renderer*	rend;
 		double			time = 0;
 		double			old_time = 0;
+		int				*textures[5];
 
 		pos_x = 2;
-		pos_y = 4;
+		pos_y = 2;
 		vector_y = 0;
 		vector_x = -1;
 		plane_x = 0;
@@ -184,7 +81,7 @@ int	main(int argc, char **argv)
 			ft_putstr("\033[1;31mError initializing SDL\n\e[m");
 			return (1);
 		}
-		win = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, We, He, 0);
+		win = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, 0);
 		if (!win)
 		{
 			ft_putstr("\033[1;31mError creating window\n\e[m");
@@ -203,14 +100,34 @@ int	main(int argc, char **argv)
 		map_widthe(argv[1], pool);
 		map_height(argv[1], pool);
 		create_map(argv[1], pool);
+
+		/***/
+		// int l = 0;
+		// while (l < 5)
+		// {
+		// 	textures[l] = malloc(sizeof(int) * (texture_W * texture_H));
+		// 	l++;
+		// }
+		int count = 0;
+		textures[0] = malloc(sizeof(int) * (texture_W * texture_H));
+		textures[1] = malloc(sizeof(int) * (texture_W * texture_H));
+		textures[2] = malloc(sizeof(int) * (texture_W * texture_H));
+		textures[3] = malloc(sizeof(int) * (texture_W * texture_H));
+		textures[4] = malloc(sizeof(int) * (texture_W * texture_H));
+		get_textures(textures[0], "./pics/bluestone.png");
+		get_textures(textures[1], "./pics/colorstone.png");
+		get_textures(textures[2], "./pics/greystone.png");
+		get_textures(textures[3], "./pics/purplestone.png");
+		get_textures(textures[4], "./pics/eagle.png");
+		/***/
 		done = SDL_FALSE;
 		while (!done)
 		{
 			x = 0;
-			while (x < We)
+			while (x < W)
 			{
-				int color = 255;
-				camera_x = 2 * x / (double)We - 1;
+				// int color = 255;
+				camera_x = 2 * x / (double)W - 1;
 				ray_vector_x = vector_x + plane_x * camera_x;
 				ray_vector_y = vector_y + plane_y * camera_x;
 				int map_x = (int)pos_x;
@@ -269,23 +186,64 @@ int	main(int argc, char **argv)
 					perp_wall_vector = (map_x - pos_x + (1 - step_x) / 2) / ray_vector_x;
 				else
 					perp_wall_vector = (map_y - pos_y + (1 - step_y) / 2) / ray_vector_y;
-				int line_height = (int)(He / perp_wall_vector);
-				int draw_start = -line_height / 2 + He / 2;
+				int line_height = (int)(H / perp_wall_vector);
+				int draw_start = -line_height / 2 + H / 2;
 				if (draw_start < 0)
 					draw_start = 0;
-				int draw_end = line_height / 2 + He / 2;
-				if (draw_end >= He)
-					draw_end = He - 1;
-				if (side == 1)
-					color = color / 4;
-				if (pool->map[map_x][map_y] == 1 || pool->map[map_x][map_y] == 2)
-					pool->map[map_x][map_y] == 1 ? SDL_SetRenderDrawColor(rend, color, 0, 0, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, 0, color, 0, SDL_ALPHA_OPAQUE);
-				// if (pool->map[map_x][map_y] == 3 || pool->map[map_x][map_y] == 4)
-					// pool->map[map_x][map_y] == 3 ? SDL_SetRenderDrawColor(rend, 0, 0, color, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, color, 0, color, SDL_ALPHA_OPAQUE);
-				// if (pool->map[map_x][map_y] == 5)
-					// pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 60, 0, color, SDL_ALPHA_OPAQUE);
+				int draw_end = line_height / 2 + H / 2;
+				if (draw_end >= H)
+					draw_end = H - 1;
+				/***/
 
-				SDL_RenderDrawLine(rend, x, draw_start, x, draw_end);
+				double	wall_x;
+
+				if (side == 0)
+					wall_x = pos_y + perp_wall_vector * ray_vector_y;
+				else
+					wall_x = pos_x + perp_wall_vector * ray_vector_x;
+				wall_x -= floor(wall_x);
+
+				int tex_x = (int)(wall_x * (double)texture_W);
+				if ((side == 0 && ray_vector_x > 0) || (side == 1 && ray_vector_y < 0))
+					tex_x = texture_W - tex_x - 1;
+				int y = draw_start;
+				int xcount = count;
+				while(y < draw_end)
+				{
+					int d = y * 256 - H * 128 + line_height * 128;
+					int tex_y = ((d * texture_H) / line_height);
+					xcount = texture_H * tex_y + tex_x;
+					if (pool->map[map_x][map_y] == 1)
+						SDL_SetRenderDrawColor(rend, textures[0][xcount + 2], textures[0][xcount + 1], textures[0][xcount], SDL_ALPHA_OPAQUE);
+					if (pool->map[map_x][map_y] == 2)
+						SDL_SetRenderDrawColor(rend, textures[1][xcount + 2], textures[1][xcount + 1], textures[1][xcount], SDL_ALPHA_OPAQUE);
+					if (pool->map[map_x][map_y] == 3)
+						SDL_SetRenderDrawColor(rend, textures[2][xcount + 2], textures[2][xcount + 1], textures[2][xcount], SDL_ALPHA_OPAQUE);
+					if (pool->map[map_x][map_y] == 4)
+						SDL_SetRenderDrawColor(rend, textures[3][xcount + 2], textures[3][xcount + 1], textures[3][xcount], SDL_ALPHA_OPAQUE);
+					if (pool->map[map_x][map_y] == 5)
+						SDL_SetRenderDrawColor(rend, textures[4][xcount + 2], textures[4][xcount + 1], textures[4][xcount], SDL_ALPHA_OPAQUE);
+					SDL_RenderDrawPoint(rend, x, y);
+					y++;
+				}
+				count++;
+				/***/
+
+				// if (side == 1)
+				// 	color = color / 4;
+				// if (pool->map[map_x][map_y] == 1 || pool->map[map_x][map_y] == 2)
+				// 	pool->map[map_x][map_y] == 1 ? SDL_SetRenderDrawColor(rend, color, 0, 0, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, 0, color, 0, SDL_ALPHA_OPAQUE);
+				// if (pool->map[map_x][map_y] == 3 || pool->map[map_x][map_y] == 4)
+				// 	pool->map[map_x][map_y] == 3 ? SDL_SetRenderDrawColor(rend, 0, 0, color, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, color, 0, color, SDL_ALPHA_OPAQUE);
+				// if (pool->map[map_x][map_y] == 5)
+				// 	pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 60, 0, color, SDL_ALPHA_OPAQUE);
+				// if (pool->map[map_x][map_y] == 6)
+				// 	pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 30, 30, 40, SDL_ALPHA_OPAQUE);
+				// if (pool->map[map_x][map_y] == 7)
+				// 	pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 60, 20, 20, SDL_ALPHA_OPAQUE);
+				// if (pool->map[map_x][map_y] == 8)
+				// 	pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 20, 30, 80, SDL_ALPHA_OPAQUE);
+				// SDL_RenderDrawLine(rend, x, draw_start, x, draw_end);
 				x++;
 			}
 			old_time = time;

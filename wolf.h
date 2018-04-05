@@ -18,19 +18,29 @@
 # include <SDL.h>
 # include <SDL_timer.h>
 # include <SDL_image.h>
+# include <math.h>
 
-# define We 640
-# define He 480
+# define W 1024
+# define H 768
+# define texture_W 64
+# define texture_H 64
 
 typedef	struct	s_pool
 {
 	int len_map_x;
 	int len_map_y;
-	int	**map;	
+	int	**map;
+	// int	textures[5];
+	// SDL_Surface *textures;
+	// SDL_Surface *surf;
 }				t_pool;
 
 void	usage(void);
 void	error(void);
+void	map_widthe(char *argv, t_pool *pool);
+void	map_height(char *argv, t_pool *pool);
+char	*read_file(char *argv);
+void	create_map(char *argv, t_pool *pool);
 
 #endif
 

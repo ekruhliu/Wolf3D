@@ -26,22 +26,21 @@
 # define texture_W 64
 # define texture_H 64
 
+// typedef struct	s_surfs
+// {
+
+// }				t_surfs;
+
 typedef	struct	s_pool
 {
 	int				len_map_x;
 	int				len_map_y;
 	int				**map;
-	SDL_Surface		**wall_texture;
-	SDL_Surface 	*surface;
+	int				*textures[8];
+	// t_surfs			*surfs;
 }				t_pool;
 
-// typedef struct	s_masks
-// {
-// 	Uint_32	rmask;
-// 	Uint_32	gmask;
-// 	Uint_32	bmask;
-// 	Uint_32	amask;
-// }				t_masks;
+
 
 void	usage(void);
 void	error(void);
@@ -49,12 +48,7 @@ void	map_widthe(char *argv, t_pool *pool);
 void	map_height(char *argv, t_pool *pool);
 char	*read_file(char *argv);
 void	create_map(char *argv, t_pool *pool);
-int		showmenu(SDL_Surface* screen, TTF_Font* font);
+// int		showmenu(SDL_Surface* screen, TTF_Font* font);
+void	make_textures(int *textures, const char *file);
 
 #endif
-
-// SDL_SetRenderDrawColor(rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
-// SDL_RenderClear(rend);
-// SDL_SetRenderDrawColor(rend, 255, 255, 255, SDL_ALPHA_OPAQUE);
-// SDL_RenderDrawLines(rend, points, POINTS_COUNT);
-// SDL_RenderPresent(rend);

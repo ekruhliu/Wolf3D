@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "wolf.h"
+#include "../includes/wolf.h"
 
 void	map_widthe(char *argv, t_pool *pool)
 {

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   usage.c                                            :+:      :+:    :+:   */
+/*   cleaner.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekruhliu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/02 15:05:43 by ekruhliu          #+#    #+#             */
-/*   Updated: 2018/04/02 15:05:44 by ekruhliu         ###   ########.fr       */
+/*   Created: 2018/04/11 12:33:29 by ekruhliu          #+#    #+#             */
+/*   Updated: 2018/04/11 12:33:58 by ekruhliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./wolf.h"
+#include "../includes/wolf.h"
 
-void	usage(void)
+void	cleaner(t_pool *pool)
 {
-	ft_putstr("\033[1;31musage: ./wolf3d MAP NAME\n\e[m");
-}
-
-void	error(void)
-{
-	ft_putstr("\033[1;31mERROR\n\e[m");
+	free(pool->textures[0]);
+	free(pool->textures[1]);
+	free(pool->textures[2]);
+	free(pool->textures[3]);
+	free(pool->textures[4]);
+	free(pool->textures[5]);
+	free(pool->textures[6]);
+	free(pool->textures[7]);
+	free(pool->map);
+	free(pool->sdl);
+	free(pool->ray_cast);
+	free(pool->draw_tex);
+	free(pool);
 }

@@ -601,3 +601,26 @@ dWEAP.h = 500;
         }
     }
 }
+
+
+
+
+
+                /* COLOR
+                // int color = 255;
+                // if (side == 1)
+                //  color = color / 4;
+                // if (pool->map[map_x][map_y] == 1 || pool->map[map_x][map_y] == 2)
+                //  pool->map[map_x][map_y] == 1 ? SDL_SetRenderDrawColor(rend, color, 0, 0, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, 0, color, 0, SDL_ALPHA_OPAQUE);
+                // if (pool->map[map_x][map_y] == 3 || pool->map[map_x][map_y] == 4)
+                //  pool->map[map_x][map_y] == 3 ? SDL_SetRenderDrawColor(rend, 0, 0, color, SDL_ALPHA_OPAQUE) : SDL_SetRenderDrawColor(rend, color, 0, color, SDL_ALPHA_OPAQUE);
+                // if (pool->map[map_x][map_y] == 5)
+                //  pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 60, 0, color, SDL_ALPHA_OPAQUE);
+                // if (pool->map[map_x][map_y] == 6)
+                //  pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 30, 30, 40, SDL_ALPHA_OPAQUE);
+                // if (pool->map[map_x][map_y] == 7)
+                //  pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 60, 20, 20, SDL_ALPHA_OPAQUE);
+                // if (pool->map[map_x][map_y] == 8)
+                //  pool->map[map_x][map_y] = SDL_SetRenderDrawColor(rend, 20, 30, 80, SDL_ALPHA_OPAQUE);
+                // SDL_RenderDrawLine(rend, x, draw_start, x, draw_end);
+                */

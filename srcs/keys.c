@@ -27,6 +27,21 @@ void	keys(t_pool *pool)
 		turn_right(pool);
 	if (pool->sdl->keyboard_state[SDL_SCANCODE_LEFT] || pool->sdl->keyboard_state[SDL_SCANCODE_A])
 		turn_left(pool);
+	if (pool->sdl->event.type == SDL_KEYDOWN)
+	{
+		if (pool->sdl->keyboard_state[SDL_SCANCODE_1])
+		{
+			pool->weapon->act_pistol = 0;
+			pool->weapon->act_knife = 1;
+		}
+		if (pool->sdl->keyboard_state[SDL_SCANCODE_2] && pool->weapon->act_pistol == 0)
+		{
+			pool->weapon->act_pistol = 1;
+			pool->weapon->act_knife = 0;
+		}
+		// if (pool->sdl->keyboard_state[SDL_SCANCODE_1] && pool->weapon->act_pistol == 1)
+			// pool->weapon->act_pistol = 0;
+	}
 	if (pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 		pool->sdl->done = SDL_TRUE;
 }

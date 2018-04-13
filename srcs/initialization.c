@@ -19,7 +19,7 @@ void	initialization(t_pool *pool)
 		ft_putstr("\033[1;31mError initializing SDL\n\e[m");
 		exit(1);
 	}
-	pool->sdl->win = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, SDL_WINDOW_FULLSCREEN);
+	pool->sdl->win = SDL_CreateWindow("Wolf3d", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, W, H, 0);//SDL_WINDOW_FULLSCREEN);
 	if (!pool->sdl->win)
 	{
 		ft_putstr("\033[1;31mError creating window\n\e[m");

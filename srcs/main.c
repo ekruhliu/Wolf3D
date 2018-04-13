@@ -31,6 +31,8 @@ static void	variables(t_pool *pool)
 	pool->plane_x = 0;
 	pool->plane_y = 0.66;
 	pool->sdl->done = SDL_FALSE;
+	pool->weapon->act_pistol = 0;
+	pool->weapon->act_knife = 1;
 }
 
 static void	part_one(t_pool *pool, char *argv)
@@ -38,6 +40,8 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->sdl = malloc(sizeof(t_sdl));
 	pool->ray_cast = malloc(sizeof(t_ray_cast));
 	pool->draw_tex = malloc(sizeof(t_draw_tex));
+	pool->bar = malloc(sizeof(t_bar));
+	pool->weapon = malloc(sizeof(t_weapon));
 	variables(pool);
 	map_widthe(argv, pool);
 	map_height(argv, pool);
@@ -46,40 +50,64 @@ static void	part_one(t_pool *pool, char *argv)
 	initialization(pool);
 
 	pool->bar->face_img = IMG_Load("./pics/bar/face.png");
-	// pool->bar->health_img = IMG_Load("./pics/bar/health.png");
-	// pool->bar->arms_img = IMG_Load("./pics/bar/all_arms.png");
+	pool->bar->health_img = IMG_Load("./pics/bar/health.png");
+	pool->bar->arms_img = IMG_Load("./pics/bar/all_arms.png");
+	pool->weapon->pistol_img = IMG_Load("./pics/weapon/pistol.png");
+	pool->weapon->knife_img = IMG_Load("./pics/weapon/knife.png");
 
 	pool->bar->face = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->face_img);
-	// pool->bar->health = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->health_img);
-	// pool->bar->arms = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->arms_img);
+	pool->bar->health = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->health_img);
+	pool->bar->arms = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->arms_img);
+	pool->weapon->pistol = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->pistol_img);
+	pool->weapon->knife = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->knife_img);
 
 	pool->bar->Sface.x = 0;
 	pool->bar->Sface.y = 0;
 	pool->bar->Sface.w = 1024;
 	pool->bar->Sface.h = 768;
-	// pool->bar->Shealth.x = 200;
-	// pool->bar->Shealth.y = 200;
-	// pool->bar->Shealth.w = 200;
-	// pool->bar->Shealth.h = 200;
-	// pool->bar->Sarms.x = 300;
-	// pool->bar->Sarms.y = 300;
-	// pool->bar->Sarms.w = 300;
-	// pool->bar->Sarms.h = 300;
-	pool->bar->Dface.x = 100;
-	pool->bar->Dface.y = 300;
-	pool->bar->Dface.w = 100;
-	pool->bar->Dface.h = 300;
-	// pool->bar->Dhealth.x = 500;
-	// pool->bar->Dhealth.y = 500;
-	// pool->bar->Dhealth.w = 500;
-	// pool->bar->Dhealth.h = 500;
-	// pool->bar->Darms.x = 600;
-	// pool->bar->Darms.y = 600;
-	// pool->bar->Darms.w = 600;
-	// pool->bar->Darms.h = 600;
+	pool->bar->Shealth.x = 0;
+	pool->bar->Shealth.y = 0;
+	pool->bar->Shealth.w = 1024;
+	pool->bar->Shealth.h = 768;
+	pool->bar->Sarms.x = 0;
+	pool->bar->Sarms.y = 0;
+	pool->bar->Sarms.w = 1024;
+	pool->bar->Sarms.h = 768;
+	pool->bar->Dface.x = 0;
+	pool->bar->Dface.y = 518;
+	pool->bar->Dface.w = 150;
+	pool->bar->Dface.h = 150;
+	pool->bar->Dhealth.x = 0;
+	pool->bar->Dhealth.y = 668;
+	pool->bar->Dhealth.w = 150;
+	pool->bar->Dhealth.h = 100;
+	pool->bar->Darms.x = 805;
+	pool->bar->Darms.y = 518;
+	pool->bar->Darms.w = 220;
+	pool->bar->Darms.h = 30;
+
+	pool->weapon->Spist.x = 0;
+	pool->weapon->Spist.y = 0;
+	pool->weapon->Spist.w = 1024;
+	pool->weapon->Spist.h = 768;
+	pool->weapon->Dpist.x = 360;
+	pool->weapon->Dpist.y = 470;
+	pool->weapon->Dpist.w = 320;
+	pool->weapon->Dpist.h = 300;
+
+	pool->weapon->Sknife.x = 0;
+	pool->weapon->Sknife.y = 0;
+	pool->weapon->Sknife.w = 1024;
+	pool->weapon->Sknife.h = 768;
+	pool->weapon->Dknife.x = 500;
+	pool->weapon->Dknife.y = 470;
+	pool->weapon->Dknife.w = 320;
+	pool->weapon->Dknife.h = 300;
+
+	SDL_FreeSurface(pool->weapon->pistol_img);
 	SDL_FreeSurface(pool->bar->face_img);
-	// SDL_FreeSurface(pool->bar->health_img);
-	// SDL_FreeSurface(pool->bar->arms_img);
+	SDL_FreeSurface(pool->bar->health_img);
+	SDL_FreeSurface(pool->bar->arms_img);
 }
 
 static void	part_two(t_pool *pool)
@@ -89,6 +117,12 @@ static void	part_two(t_pool *pool)
 	SDL_SetRenderDrawColor(pool->sdl->rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
 	SDL_RenderCopy(pool->sdl->rend, pool->sdl->screen_tex, &pool->sdl->SrcR, &pool->sdl->DestR);
 	SDL_RenderCopy(pool->sdl->rend, pool->bar->face, &pool->bar->Sface, &pool->bar->Dface);
+	SDL_RenderCopy(pool->sdl->rend, pool->bar->health, &pool->bar->Shealth, &pool->bar->Dhealth);
+	SDL_RenderCopy(pool->sdl->rend, pool->bar->arms, &pool->bar->Sarms, &pool->bar->Darms);
+	if (pool->weapon->act_knife == 1)
+		SDL_RenderCopy(pool->sdl->rend, pool->weapon->knife, &pool->weapon->Sknife, &pool->weapon->Dknife);
+	if (pool->weapon->act_pistol == 1)
+		SDL_RenderCopy(pool->sdl->rend, pool->weapon->pistol, &pool->weapon->Spist, &pool->weapon->Dpist);
 	SDL_RenderPresent(pool->sdl->rend);
 	SDL_RenderClear(pool->sdl->rend);
 	keys(pool);

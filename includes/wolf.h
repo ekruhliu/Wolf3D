@@ -31,18 +31,30 @@ typedef struct	s_bar
 	SDL_Surface* face_img;
 	SDL_Surface* health_img;
 	SDL_Surface* arms_img;
-
 	SDL_Texture* face;
-	// SDL_Texture* health;
-	// SDL_Texture* arms;
-
+	SDL_Texture* health;
+	SDL_Texture* arms;
 	SDL_Rect	Sface;
 	SDL_Rect	Dface;
-	// SDL_Rect	Shealth;
-	// SDL_Rect	Dhealth;
-	// SDL_Rect	Sarms;
-	// SDL_Rect	Darms;
+	SDL_Rect	Shealth;
+	SDL_Rect	Dhealth;
+	SDL_Rect	Sarms;
+	SDL_Rect	Darms;
 }				t_bar;
+
+typedef struct	s_weapon
+{
+	SDL_Surface*	pistol_img;
+	SDL_Surface*	knife_img;
+	SDL_Texture*	knife;
+	SDL_Texture*	pistol;
+	SDL_Rect		Spist;
+	SDL_Rect		Dpist;
+	SDL_Rect		Sknife;
+	SDL_Rect		Dknife;
+	int				act_pistol;
+	int				act_knife;
+}				t_weapon;
 
 typedef	struct	s_ray_cast
 {
@@ -122,6 +134,7 @@ typedef	struct	s_pool
 	t_ray_cast		*ray_cast;
 	t_draw_tex		*draw_tex;
 	t_bar			*bar;
+	t_weapon		*weapon;
 }				t_pool;
 
 

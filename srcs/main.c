@@ -54,12 +54,14 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->bar->arms_img = IMG_Load("./pics/bar/all_arms.png");
 	pool->weapon->pistol_img = IMG_Load("./pics/weapon/pistol.png");
 	pool->weapon->knife_img = IMG_Load("./pics/weapon/knife.png");
+	pool->bar->fuck_img = IMG_Load("./pics/weapon/fuck.png");
 
 	pool->bar->face = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->face_img);
 	pool->bar->health = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->health_img);
 	pool->bar->arms = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->arms_img);
 	pool->weapon->pistol = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->pistol_img);
 	pool->weapon->knife = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->knife_img);
+	pool->bar->fuck = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->fuck_img);
 
 	pool->bar->Sface.x = 0;
 	pool->bar->Sface.y = 0;
@@ -104,10 +106,21 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->weapon->Dknife.w = 320;
 	pool->weapon->Dknife.h = 300;
 
+	pool->bar->Sfuck.x = 0;
+	pool->bar->Sfuck.y = 0;
+	pool->bar->Sfuck.w = 1024;
+	pool->bar->Sfuck.h = 768;
+	pool->bar->Dfuck.x = 500;
+	pool->bar->Dfuck.y = 470;
+	pool->bar->Dfuck.w = 260;
+	pool->bar->Dfuck.h = 300;
+
 	SDL_FreeSurface(pool->weapon->pistol_img);
 	SDL_FreeSurface(pool->bar->face_img);
 	SDL_FreeSurface(pool->bar->health_img);
 	SDL_FreeSurface(pool->bar->arms_img);
+	SDL_FreeSurface(pool->weapon->knife_img);
+	SDL_FreeSurface(pool->bar->fuck_img);
 }
 
 static void	part_two(t_pool *pool)
@@ -123,6 +136,8 @@ static void	part_two(t_pool *pool)
 		SDL_RenderCopy(pool->sdl->rend, pool->weapon->knife, &pool->weapon->Sknife, &pool->weapon->Dknife);
 	if (pool->weapon->act_pistol == 1)
 		SDL_RenderCopy(pool->sdl->rend, pool->weapon->pistol, &pool->weapon->Spist, &pool->weapon->Dpist);
+	if (pool->bar->act_fuck == 1)
+		SDL_RenderCopy(pool->sdl->rend, pool->bar->fuck, &pool->bar->Sfuck, &pool->bar->Dfuck);
 	SDL_RenderPresent(pool->sdl->rend);
 	SDL_RenderClear(pool->sdl->rend);
 	keys(pool);

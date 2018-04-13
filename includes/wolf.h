@@ -31,15 +31,20 @@ typedef struct	s_bar
 	SDL_Surface* face_img;
 	SDL_Surface* health_img;
 	SDL_Surface* arms_img;
+	SDL_Surface* fuck_img;
 	SDL_Texture* face;
 	SDL_Texture* health;
 	SDL_Texture* arms;
+	SDL_Texture* fuck;
 	SDL_Rect	Sface;
 	SDL_Rect	Dface;
 	SDL_Rect	Shealth;
 	SDL_Rect	Dhealth;
 	SDL_Rect	Sarms;
 	SDL_Rect	Darms;
+	SDL_Rect	Sfuck;
+	SDL_Rect	Dfuck;
+	int			act_fuck;
 }				t_bar;
 
 typedef struct	s_weapon

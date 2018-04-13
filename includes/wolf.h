@@ -26,10 +26,24 @@
 # define texture_W 64
 # define texture_H 64
 
-// typedef struct	s_surfs
-// {
+typedef struct	s_bar
+{
+	SDL_Surface* face_img;
+	SDL_Surface* health_img;
+	SDL_Surface* arms_img;
 
-// }				t_surfs;
+	SDL_Texture* face;
+	// SDL_Texture* health;
+	// SDL_Texture* arms;
+
+	SDL_Rect	Sface;
+	SDL_Rect	Dface;
+	// SDL_Rect	Shealth;
+	// SDL_Rect	Dhealth;
+	// SDL_Rect	Sarms;
+	// SDL_Rect	Darms;
+}				t_bar;
+
 typedef	struct	s_ray_cast
 {
 	int				hit;
@@ -107,6 +121,7 @@ typedef	struct	s_pool
 	t_sdl			*sdl;
 	t_ray_cast		*ray_cast;
 	t_draw_tex		*draw_tex;
+	t_bar			*bar;
 }				t_pool;
 
 

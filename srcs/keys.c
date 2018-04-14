@@ -59,4 +59,15 @@ void	keys(t_pool *pool)
 		pool->weapon->act_knife = 1;
 		pool->weapon->knife_attack = 0;
 	}
+
+	if (pool->sdl->event.type == SDL_KEYDOWN && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_SPACE && pool->weapon->act_pistol == 1)
+	{
+		pool->weapon->act_pistol = 0;
+		pool->weapon->pistol_attack = 1;
+	}
+	if (pool->sdl->event.type == SDL_KEYUP && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_SPACE && pool->weapon->pistol_attack == 1)
+	{
+		pool->weapon->act_pistol = 1;
+		pool->weapon->pistol_attack = 0;
+	}
 }

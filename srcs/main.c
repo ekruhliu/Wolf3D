@@ -32,6 +32,7 @@ static void	variables(t_pool *pool)
 	pool->weapon->act_pistol = 0;
 	pool->weapon->act_knife = 1;
 	pool->weapon->knife_attack = 0;
+	pool->weapon->pistol_attack = 0;
 }
 
 static void	part_one(t_pool *pool, char *argv)
@@ -59,6 +60,7 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->weapon->knife_img = IMG_Load("./pics/weapon/knife.png");
 	pool->bar->fuck_img = IMG_Load("./pics/weapon/fuck.png");
 	pool->weapon->knife_attack_img = IMG_Load("./pics/weapon/knife_2.png");
+	pool->weapon->pistol_attack_img = IMG_Load("./pics/weapon/pistol_2.png");
 
 	pool->bar->face = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->face_img);
 	pool->bar->health = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->health_img);
@@ -67,6 +69,7 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->weapon->knife = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->knife_img);
 	pool->bar->fuck = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->bar->fuck_img);
 	pool->weapon->knife_attack_tex = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->knife_attack_img);
+	pool->weapon->pistol_attack_tex = SDL_CreateTextureFromSurface(pool->sdl->rend, pool->weapon->pistol_attack_img);
 
 	pool->bar->Sface.x = 0;
 	pool->bar->Sface.y = 0;
@@ -101,6 +104,15 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->weapon->Dpist.y = 470;
 	pool->weapon->Dpist.w = 320;
 	pool->weapon->Dpist.h = 300;
+
+	pool->weapon->Spist_att.x = 0;
+	pool->weapon->Spist_att.y = 0;
+	pool->weapon->Spist_att.w = 1024;
+	pool->weapon->Spist_att.h = 768;
+	pool->weapon->Dpist_att.x = 315;
+	pool->weapon->Dpist_att.y = 325;
+	pool->weapon->Dpist_att.w = 420;
+	pool->weapon->Dpist_att.h = 480;
 
 	pool->weapon->Sknife.x = 0;
 	pool->weapon->Sknife.y = 0;
@@ -146,6 +158,8 @@ static void	part_two(t_pool *pool)
 		SDL_RenderCopy(pool->sdl->rend, pool->bar->fuck, &pool->bar->Sfuck, &pool->bar->Dfuck);
 	if (pool->weapon->knife_attack == 1)
 		SDL_RenderCopy(pool->sdl->rend, pool->weapon->knife_attack_tex, &pool->weapon->Sknife, &pool->weapon->Dknife);
+	if (pool->weapon->pistol_attack == 1)
+		SDL_RenderCopy(pool->sdl->rend, pool->weapon->pistol_attack_tex, &pool->weapon->Spist_att, &pool->weapon->Dpist_att);
 	SDL_RenderPresent(pool->sdl->rend);
 	SDL_RenderClear(pool->sdl->rend);
 	keys(pool);

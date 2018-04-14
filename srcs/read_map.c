@@ -25,13 +25,13 @@ void	map_widthe(char *argv, t_pool *pool)
 		error();
 		exit(1);
 	}
-	// free(argv);
+	free(argv);
 	tab = ft_strsplit(argv, ' ');
 	while (tab[widthe])
 		widthe++;
 	while (get_next_line(fd, &argv) > 0)
 		free(argv);
-	// free(argv);
+	free(argv);
 	close(fd);
 	pool->len_map_x = widthe;
 }
@@ -48,7 +48,7 @@ void	map_height(char *argv, t_pool *pool)
 		height++;
 		free(argv);
 	}
-	// free(argv);
+	free(argv);
 	close(fd);
 	pool->len_map_y = height;
 }
@@ -74,7 +74,7 @@ char		*read_file(char *argv)
 		free(tmp);
 		free(argv);
 	}
-	// free(argv);
+	free(argv);
 	close(fd);
 	return (res);
 }
@@ -103,6 +103,11 @@ void	create_map(char *argv, t_pool *pool)
 		n = 0;
 		while (n < pool->len_map_x)
 		{
+			if (tab[elem][0] == 'X')
+			{
+				pool->pos_y = i;
+				pool->pos_x = n;
+			}
 			pool->map[i][n] = ft_atoi(tab[elem]);
 			elem++;
 			n++;

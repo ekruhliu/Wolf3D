@@ -24,8 +24,8 @@ static void	variables(t_pool *pool)
 	pool->sdl->DestR.y = 0;
 	pool->sdl->DestR.w = 1024;
 	pool->sdl->DestR.h = 768;
-	pool->pos_x = 2;
-	pool->pos_y = 2;
+	// pool->pos_x = 2;
+	// pool->pos_y = 2;
 	pool->vector_y = 0;
 	pool->vector_x = -1;
 	pool->plane_x = 0;
@@ -46,6 +46,11 @@ static void	part_one(t_pool *pool, char *argv)
 	map_widthe(argv, pool);
 	map_height(argv, pool);
 	create_map(argv, pool);
+	if (!pool->pos_x && !pool->pos_y)
+	{
+		ft_putstr("\033[1;31mERROR: No player position!\n\e[m");
+		exit(1);
+	}
 	create_textures(pool);
 	initialization(pool);
 

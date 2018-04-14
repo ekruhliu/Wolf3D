@@ -49,4 +49,14 @@ void	keys(t_pool *pool)
 		pool->bar->act_fuck = 0;
 	if (pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 		pool->sdl->done = SDL_TRUE;
+	if (pool->sdl->event.type == SDL_KEYDOWN && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_SPACE && pool->weapon->act_knife == 1)
+	{
+		pool->weapon->act_knife = 0;
+		pool->weapon->knife_attack = 1;
+	}
+	if (pool->sdl->event.type == SDL_KEYUP && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_SPACE && pool->weapon->knife_attack == 1)
+	{
+		pool->weapon->act_knife = 1;
+		pool->weapon->knife_attack = 0;
+	}
 }

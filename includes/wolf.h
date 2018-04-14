@@ -51,14 +51,17 @@ typedef struct	s_weapon
 {
 	SDL_Surface*	pistol_img;
 	SDL_Surface*	knife_img;
+	SDL_Surface*	knife_attack_img;
 	SDL_Texture*	knife;
 	SDL_Texture*	pistol;
+	SDL_Texture*	knife_attack_tex;
 	SDL_Rect		Spist;
 	SDL_Rect		Dpist;
 	SDL_Rect		Sknife;
 	SDL_Rect		Dknife;
 	int				act_pistol;
 	int				act_knife;
+	int				knife_attack;
 }				t_weapon;
 
 typedef	struct	s_ray_cast

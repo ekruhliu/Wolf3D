@@ -24,8 +24,8 @@ static void	variables(t_pool *pool)
 	pool->sdl->DestR.y = 0;
 	pool->sdl->DestR.w = 1024;
 	pool->sdl->DestR.h = 768;
-	// pool->pos_x = 2;
-	// pool->pos_y = 2;
+	// pool->pos_x = 22;
+	// pool->pos_y = 53;
 	pool->vector_y = 0;
 	pool->vector_x = -1;
 	pool->plane_x = 0;
@@ -53,7 +53,6 @@ static void	part_one(t_pool *pool, char *argv)
 	}
 	create_textures(pool);
 	initialization(pool);
-
 	pool->bar->face_img = IMG_Load("./pics/bar/face.png");
 	pool->bar->health_img = IMG_Load("./pics/bar/health.png");
 	pool->bar->arms_img = IMG_Load("./pics/bar/all_arms.png");
@@ -126,6 +125,7 @@ static void	part_one(t_pool *pool, char *argv)
 	SDL_FreeSurface(pool->bar->arms_img);
 	SDL_FreeSurface(pool->weapon->knife_img);
 	SDL_FreeSurface(pool->bar->fuck_img);
+
 }
 
 static void	part_two(t_pool *pool)

@@ -76,7 +76,7 @@ void			draw_floor_and_ceiling(t_pool *pool, int x)
 		pool->draw_tex->current_floor_y = pool->draw_tex->weight * pool->draw_tex->floor_y_wall + (1.0 - pool->draw_tex->weight) * pool->pos_y;
 		pool->draw_tex->floor_tex_x = (int)(pool->draw_tex->current_floor_x * texture_W) % texture_W;
 		pool->draw_tex->floor_tex_y = (int)(pool->draw_tex->current_floor_y * texture_W) % texture_W;
-		pool->sdl->tex_arr[x][pool->draw_tex->y] = (pool->textures[2][texture_W * pool->draw_tex->floor_tex_y + pool->draw_tex->floor_tex_x] >> 1) & 8355711;
+		pool->sdl->tex_arr[x][pool->draw_tex->y] = (pool->textures[0][texture_W * pool->draw_tex->floor_tex_y + pool->draw_tex->floor_tex_x] >> 1) & 8355711;
 		pool->sdl->tex_arr[x][H - pool->draw_tex->y] = pool->textures[0][texture_W * pool->draw_tex->floor_tex_y + pool->draw_tex->floor_tex_x];
 		pool->draw_tex->y++;
 	}

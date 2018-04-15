@@ -21,7 +21,8 @@ HEADER = includes/wolf.h
 LIBFT = libft/libft.a
 
 SRCS = ./srcs/cleaner.c ./srcs/create_textures.c ./srcs/draw_textures.c ./srcs/initialization.c ./srcs/moves.c \
-./srcs/ray_casting.c ./srcs/read_map.c ./srcs/time_and_speed.c ./srcs/usage.c ./srcs/keys.c ./srcs/main.c
+./srcs/ray_casting.c ./srcs/read_map.c ./srcs/time_and_speed.c ./srcs/usage.c ./srcs/keys.c ./srcs/clear_weapon.c \
+./srcs/init_bar.c ./srcs/init_weapon.c ./srcs/create_map.c ./srcs/init_textures.c ./srcs/shots.c ./srcs/main.c
 
 OBJ = $(SRCS:.c=.o)
 

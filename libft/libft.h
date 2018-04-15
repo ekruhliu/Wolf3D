@@ -18,6 +18,7 @@
 # include <string.h>
 # include <limits.h>
 # include <math.h>
+# include <stdio.h>
 # define BUFF_SIZE 100
 
 typedef	struct		s_pack

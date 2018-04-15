@@ -26,6 +26,9 @@
 # define texture_W 64
 # define texture_H 64
 
+# define TEX_FMR_SRF SDL_CreateTextureFromSurface
+# define SPACE pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_SPACE
+
 typedef struct	s_bar
 {
 	SDL_Surface* face_img;
@@ -53,20 +56,38 @@ typedef struct	s_weapon
 	SDL_Surface*	pistol_attack_img;
 	SDL_Surface*	knife_img;
 	SDL_Surface*	knife_attack_img;
+	SDL_Surface*	shotgun_img;
+	SDL_Surface*	shotgun_attack_img;
+	SDL_Surface*	mp40_img;
+	SDL_Surface*	mp40_attack_img;
 	SDL_Texture*	knife;
 	SDL_Texture*	pistol;
+	SDL_Texture*	mp40;
+	SDL_Texture*	shotgun;
 	SDL_Texture*	knife_attack_tex;
 	SDL_Texture*	pistol_attack_tex;
+	SDL_Texture*	mp40_attack_tex;
+	SDL_Texture*	shotgun_attack_tex;
 	SDL_Rect		Spist;
 	SDL_Rect		Dpist;
 	SDL_Rect		Sknife;
 	SDL_Rect		Dknife;
+	SDL_Rect		Smp40;
+	SDL_Rect		Dmp40;
 	SDL_Rect		Spist_att;
 	SDL_Rect		Dpist_att;
+	SDL_Rect		Smp40_att;
+	SDL_Rect		Dmp40_att;
+	SDL_Rect		Sshotgun;
+	SDL_Rect		Dshotgun;
 	int				act_pistol;
 	int				act_knife;
+	int				act_mp40;
+	int				act_shotgun;
 	int				knife_attack;
-	int				pistol_attack; 
+	int				pistol_attack;
+	int				mp40_attack;
+	int				shotgun_attack;
 }				t_weapon;
 
 typedef	struct	s_ray_cast
@@ -130,7 +151,7 @@ typedef	struct	s_pool
 	int				len_map_x;
 	int				len_map_y;
 	int				**map;
-	int				*textures[63];
+	int				*textures[21];
 	double			pos_x;
 	double			pos_y;
 	double			vector_x;
@@ -143,6 +164,7 @@ typedef	struct	s_pool
 	double			frame_time;
 	double			move_speed;
 	double			rot_speed;
+	int				check;
 	t_sdl			*sdl;
 	t_ray_cast		*ray_cast;
 	t_draw_tex		*draw_tex;
@@ -171,5 +193,14 @@ void	go_back(t_pool *pool);
 void	turn_right(t_pool *pool);
 void	turn_left(t_pool *pool);
 void	draw_floor_and_ceiling(t_pool *pool, int x);
+void	clear_weapon(t_pool *pool);
+int		check_attack(t_pool *pool);
+void	init_bar(t_pool *pool);
+void	clear_surfs(t_pool *pool);
+void	init_weapon(t_pool *pool);
+void	draw_weapon_and_bar(t_pool *pool);
+void	init_textures(t_pool *pool);
+void	make_textures(int *textures, const char *file);
+void	shots(t_pool *pool);
 
 #endif

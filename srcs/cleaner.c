@@ -26,6 +26,9 @@ void	cleaner(t_pool *pool)
 	free(pool->sdl);
 	free(pool->ray_cast);
 	free(pool->draw_tex);
+	free(pool->bar);
+	free(pool->weapon);
+	free(pool->doors);
 	free(pool);
 }
 

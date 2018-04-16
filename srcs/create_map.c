@@ -41,14 +41,41 @@ static	void	part_two(t_pool *pool, char **tab)
 		{
 			if (tab[elem][0] == 'X')
 			{
-				pool->pos_y = (double)x;
-				pool->pos_x = (double)y;
+				pool->pos_y = (double)x + 0.1;
+				pool->pos_x = (double)y + 0.1;
 			}
+			// if (!tab[elem][0])
+			// 	pool->map[y][x] = 0;
 			pool->map[y][x] = ft_atoi(tab[elem]);
 			elem++;
 			x++;
 		}
 		y++;
+	}
+}
+
+static	void	part_three(t_pool *pool)
+{
+	int y;
+	int x;
+
+	y = 0;
+	x = 0;
+	while (y < pool->len_map_y)
+	{
+		if (pool->map[y][0] == 0)
+			pool->map[y][0] = 1;
+		if (pool->map[y][pool->len_map_x - 1] == 0)
+			pool->map[y][pool->len_map_x - 1] = 1;
+		y++;
+	}
+	while (x < pool->len_map_x)
+	{
+		if (pool->map[0][x] == 0)
+			pool->map[0][x] = 1;
+		if (pool->map[pool->len_map_y - 1][x] == 0)
+			pool->map[pool->len_map_y - 1][x] = 1;
+		x++;
 	}
 }
 
@@ -63,6 +90,7 @@ void	create_map(char *argv, t_pool *pool)
 	tab = ft_strsplit(line, ' ');
 	part_one(pool);
 	part_two(pool, tab);
+	part_three(pool);
 	while (tab[i])
 	{
 		free(tab[i]);

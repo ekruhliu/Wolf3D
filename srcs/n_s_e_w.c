@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_and_speed.c                                   :+:      :+:    :+:   */
+/*   n_s_e_w.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekruhliu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/04/11 16:04:40 by ekruhliu          #+#    #+#             */
-/*   Updated: 2018/04/11 16:04:57 by ekruhliu         ###   ########.fr       */
+/*   Created: 2018/04/16 20:24:16 by ekruhliu          #+#    #+#             */
+/*   Updated: 2018/04/16 20:24:16 by ekruhliu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
 
-void	time_and_speed(t_pool *pool)
+void	n_s_e_w(t_pool *pool, int tex_num)
 {
-	pool->old_time = pool->time;
-	pool->time = SDL_GetTicks();
-	pool->frame_time = (pool->time - pool->old_time) / 1000.0;
-	pool->move_speed = pool->frame_time * pool->speed_val;
-	pool->rot_speed = pool->frame_time * 3.0;
+	if (pool->ray_cast->side == 1 && tex_num == 1 && pool->ray_cast->side_vector_y > 0)
+		= pool->sdl->tex_arr[tex_num + 2][pool->draw_tex->y]
+
 }

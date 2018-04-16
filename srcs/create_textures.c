@@ -30,7 +30,6 @@ void		make_textures(int *textures, const char *file)
 	i = 0;
 	k = 0;
 	surface = IMG_Load(file);
-	// PROTECTION
 	size = texture_H * texture_W;
 	while (i < size)
 	{

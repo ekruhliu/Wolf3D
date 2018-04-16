@@ -33,6 +33,8 @@ static void	variables(t_pool *pool)
 	pool->weapon->act_knife = 1;
 	pool->weapon->knife_attack = 0;
 	pool->weapon->pistol_attack = 0;
+	pool->speed_val = 4.0;
+	pool->doors->time_door = 0;
 }
 
 static void	part_one(t_pool *pool, char *argv)
@@ -42,6 +44,7 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->draw_tex = malloc(sizeof(t_draw_tex));
 	pool->bar = malloc(sizeof(t_bar));
 	pool->weapon = malloc(sizeof(t_weapon));
+	pool->doors = malloc(sizeof(t_doors));
 	variables(pool);
 	map_widthe(argv, pool);
 	map_height(argv, pool);
@@ -60,6 +63,8 @@ static void	part_one(t_pool *pool, char *argv)
 
 static void	part_two(t_pool *pool)
 {
+	if (time(NULL) == pool->doors->time_door)
+		pool->map[pool->doors->blue_door_y][pool->doors->blue_door_x] = 9;
 	from_nth_to_texture(pool);
 	time_and_speed(pool);
 	SDL_SetRenderDrawColor(pool->sdl->rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
@@ -85,6 +90,8 @@ int	main(int argc, char **argv)
 		t_pool	*pool;
 
 		pool = malloc(sizeof(t_pool));
+		if (ft_atoi(argv[2]) == 1)
+			pool->mp = 1;
 		part_one(pool, argv[1]);
 		while (!pool->sdl->done)
 		{

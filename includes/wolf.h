@@ -20,6 +20,7 @@
 # include "../libSDL/SDL2.framework/Headers/SDL_timer.h"
 # include "../libSDL/SDL2_image.framework/Headers/SDL_image.h"
 # include <math.h>
+# include <time.h>
 
 # define W 1024
 # define H 768
@@ -144,6 +145,13 @@ typedef	struct	s_draw_tex
 	double			current_floor_y;
 }				t_draw_tex;
 
+typedef struct	s_doors
+{
+	int				blue_door_x;
+	int				blue_door_y;
+	long			time_door;
+}				t_doors;
+
 typedef	struct	s_pool
 {
 	double			time;
@@ -165,11 +173,14 @@ typedef	struct	s_pool
 	double			move_speed;
 	double			rot_speed;
 	int				check;
+	int				speed_val;
+	int				mp;
 	t_sdl			*sdl;
 	t_ray_cast		*ray_cast;
 	t_draw_tex		*draw_tex;
 	t_bar			*bar;
 	t_weapon		*weapon;
+	t_doors			*doors;
 }				t_pool;
 
 
@@ -202,5 +213,6 @@ void	draw_weapon_and_bar(t_pool *pool);
 void	init_textures(t_pool *pool);
 void	make_textures(int *textures, const char *file);
 void	shots(t_pool *pool);
+void	n_s_e_w(t_pool *pool, int tex_num);
 
 #endif

@@ -66,5 +66,24 @@ void	keys(t_pool *pool)
 		pool->bar->act_fuck = 0;
 	if (pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 		pool->sdl->done = SDL_TRUE;
+	if (pool->sdl->event.type == SDL_KEYDOWN && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+		pool->speed_val = 6.0;
+	if (pool->sdl->event.type == SDL_KEYUP && pool->sdl->event.key.keysym.scancode == SDL_SCANCODE_LSHIFT)
+		pool->speed_val = 4.0;
+	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 9 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
+	{
+		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
+		pool->doors->blue_door_x = pool->ray_cast->map_y;
+		pool->doors->blue_door_y = pool->ray_cast->map_x;
+		pool->doors->time_door = time(NULL) + 2.5;
+	}
+	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 2 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
+		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
+	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 4 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
+		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
+	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 7 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
+		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
+	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 18 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
+		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
 	shots(pool);
 }

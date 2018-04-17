@@ -75,7 +75,7 @@ void	keys(t_pool *pool)
 		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;
 		pool->doors->blue_door_x = pool->ray_cast->map_y;
 		pool->doors->blue_door_y = pool->ray_cast->map_x;
-		pool->doors->time_door = time(NULL) + 2.5;
+		pool->doors->time_door = time(NULL) + 4;
 	}
 	if (pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] == 2 && pool->sdl->keyboard_state[SDL_SCANCODE_E])
 		pool->map[pool->ray_cast->map_x][pool->ray_cast->map_y] = 0;

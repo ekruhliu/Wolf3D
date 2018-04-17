@@ -90,8 +90,11 @@ int	main(int argc, char **argv)
 		t_pool	*pool;
 
 		pool = malloc(sizeof(t_pool));
-		if (ft_atoi(argv[2]) == 1)
-			pool->mp = 1;
+		if (argv[2])
+		{
+			if (ft_atoi(argv[2]) == 1)
+				pool->mp = 1;
+		}
 		part_one(pool, argv[1]);
 		while (!pool->sdl->done)
 		{

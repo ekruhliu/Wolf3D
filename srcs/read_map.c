@@ -57,12 +57,11 @@ char		*read_file(char *argv)
 {
 	char	*res;
 	char	*tmp;
-	int		read_res;
 	int		fd;
 
 	fd = open(argv, O_RDONLY);
 	res = ft_strdup("\0");
-	while ((read_res = get_next_line(fd, &argv)) > 0)
+	while (get_next_line(fd, &argv) > 0)
 	{
 		tmp = ft_strdup(res);
 		free(res);

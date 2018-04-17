@@ -213,6 +213,6 @@ void	draw_weapon_and_bar(t_pool *pool);
 void	init_textures(t_pool *pool);
 void	make_textures(int *textures, const char *file);
 void	shots(t_pool *pool);
-void	n_s_e_w(t_pool *pool, int tex_num);
+void	n_s_e_w(t_pool *pool, int x);
 
 #endif

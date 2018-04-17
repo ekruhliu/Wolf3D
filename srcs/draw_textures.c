@@ -33,7 +33,7 @@ void			draw_textures(t_pool *pool, int x)
 		if (pool->ray_cast->side == 1)
 			pool->sdl->tex_arr[x][pool->draw_tex->y] = (pool->sdl->tex_arr[x][pool->draw_tex->y] >> 1) & 8355711;
 		if (pool->mp == 1)
-			n_s_e_w(pool, tex_num);
+			n_s_e_w(pool, x);
 		pool->draw_tex->y++;
 	}
 }

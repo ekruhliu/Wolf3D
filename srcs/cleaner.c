@@ -17,7 +17,7 @@ void	cleaner(t_pool *pool)
 	int i;
 
 	i = 0;
-	while (i < 21)
+	while (i < 22)
 	{
 		free(pool->textures[i]);
 		i++;

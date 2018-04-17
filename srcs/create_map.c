@@ -47,6 +47,8 @@ static	void	part_two(t_pool *pool, char **tab)
 			// if (!tab[elem][0])
 			// 	pool->map[y][x] = 0;
 			pool->map[y][x] = ft_atoi(tab[elem]);
+			if (pool->map[y][x] > 22 || pool->map[y][x] < 0)
+				pool->map[y][x] = 0;
 			elem++;
 			x++;
 		}
@@ -91,7 +93,7 @@ void	create_map(char *argv, t_pool *pool)
 	part_one(pool);
 	part_two(pool, tab);
 	part_three(pool);
-	while (tab[i])
+	while (i < pool->len_map_y)
 	{
 		free(tab[i]);
 		i++;

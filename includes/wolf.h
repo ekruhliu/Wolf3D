@@ -159,7 +159,7 @@ typedef	struct	s_pool
 	int				len_map_x;
 	int				len_map_y;
 	int				**map;
-	int				*textures[21];
+	int				*textures[22];
 	double			pos_x;
 	double			pos_y;
 	double			vector_x;

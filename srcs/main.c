@@ -51,7 +51,7 @@ static void	part_one(t_pool *pool, char *argv)
 	create_map(argv, pool);
 	if (!pool->pos_x && !pool->pos_y)
 	{
-		ft_putstr("\033[1;31mERROR: No player position!\n\e[m");
+		ft_putstr("\033[1;31mERROR\n\e[m");
 		exit(1);
 	}
 	create_textures(pool);
@@ -102,11 +102,15 @@ int	main(int argc, char **argv)
 			while (x < W)
 			{
 				ray_casting(pool, x);
+	
 				draw_textures(pool, x);
+	
 				draw_floor_and_ceiling(pool, x);
+	
 				x++;
 			}
 			part_two(pool);
+
 		}
 		part_three(pool);
 	}

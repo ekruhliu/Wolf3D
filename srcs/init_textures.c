@@ -17,7 +17,7 @@ void	init_textures(t_pool *pool)
 	make_textures(pool->textures[0], "./pics/walls/redbrick.png");			// 1
 	make_textures(pool->textures[1], "./pics/walls/multibrick.png");		// 2
 	make_textures(pool->textures[2], "./pics/walls/greystone.png");			// 3
-	make_textures(pool->textures[3], "./pics/walls/greystone_v2.png");		// 4
+	make_textures(pool->textures[3], "./pics/walls/door_stone.png");		// 4
 	make_textures(pool->textures[4], "./pics/walls/wood.png");				// 5
 	make_textures(pool->textures[5], "./pics/walls/bluestone.png");			// 6
 	make_textures(pool->textures[6], "./pics/walls/bluestone_v2.png");		// 7
@@ -35,4 +35,5 @@ void	init_textures(t_pool *pool)
 	make_textures(pool->textures[18], "./pics/walls/mozaik_hitler.png");	// 19
 	make_textures(pool->textures[19], "./pics/walls/hitler.png");			// 20
 	make_textures(pool->textures[20], "./pics/walls/eagle_w_swas.png");		// 21
+	make_textures(pool->textures[21], "./pics/walls/swas_flag_sandsquare.png");		// 22
 }

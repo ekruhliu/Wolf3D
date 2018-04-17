@@ -45,7 +45,7 @@ void			create_textures(t_pool *pool)
 	int i;
 
 	i = 0;
-	while (i < 21)
+	while (i < 22)
 	{
 		pool->textures[i] = malloc(sizeof(int) * (texture_W * texture_H));
 		i++;

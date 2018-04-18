@@ -14,28 +14,31 @@
 
 void	clear_weapon(t_pool *pool)
 {
-	pool->weapon->act_pistol = 0;
-	pool->weapon->act_knife = 0;
-	pool->weapon->act_mp40 = 0;
-	pool->bar->act_fuck = 0;
-	pool->weapon->knife_attack = 0;
-	pool->weapon->pistol_attack = 0;
-	pool->weapon->mp40_attack = 0;
-	pool->weapon->act_shotgun = 0;
-	pool->weapon->shotgun_attack = 0;
+	WEAPON->act_pistol = 0;
+	WEAPON->act_knife = 0;
+	WEAPON->act_mp40 = 0;
+	BAR->act_fuck = 0;
+	WEAPON->knife_attack = 0;
+	WEAPON->pistol_attack = 0;
+	WEAPON->mp40_attack = 0;
+	WEAPON->act_shotgun = 0;
+	WEAPON->shotgun_attack = 0;
+	WEAPON->act_chainsaw = 0;
 }
 
-int	check_attack(t_pool *pool)
+int		check_attack(t_pool *pool)
 {
 	if (pool->bar->act_fuck != 0)
 		return (1);
-	if (pool->weapon->knife_attack != 0)
+	if (WEAPON->knife_attack != 0)
 		return (1);
-	if (pool->weapon->pistol_attack != 0)
+	if (WEAPON->pistol_attack != 0)
 		return (1);
-	if (pool->weapon->mp40_attack != 0)
+	if (WEAPON->mp40_attack != 0)
 		return (1);
-	if (pool->weapon->shotgun_attack != 0)
+	if (WEAPON->shotgun_attack != 0)
+		return (1);
+	if (WEAPON->act_chainsaw != 0)
 		return (1);
 	return (0);
 }

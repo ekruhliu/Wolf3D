@@ -14,51 +14,33 @@
 
 static	void	else_bar(t_pool *pool)
 {
-	pool->bar->Sface.x = 0;
-	pool->bar->Sface.y = 0;
-	pool->bar->Sface.w = 1024;
-	pool->bar->Sface.h = 768;
-	pool->bar->Shealth.x = 0;
-	pool->bar->Shealth.y = 0;
-	pool->bar->Shealth.w = 1024;
-	pool->bar->Shealth.h = 768;
-	pool->bar->Sarms.x = 0;
-	pool->bar->Sarms.y = 0;
-	pool->bar->Sarms.w = 1024;
-	pool->bar->Sarms.h = 768;
-	pool->bar->Dface.x = 0;
-	pool->bar->Dface.y = 518;
-	pool->bar->Dface.w = 150;
-	pool->bar->Dface.h = 150;
-	pool->bar->Dhealth.x = 0;
-	pool->bar->Dhealth.y = 668;
-	pool->bar->Dhealth.w = 150;
-	pool->bar->Dhealth.h = 100;
-	pool->bar->Darms.x = 805;
-	pool->bar->Darms.y = 518;
-	pool->bar->Darms.w = 220;
-	pool->bar->Darms.h = 30;
+	BAR->dst_face.x = 0;
+	BAR->dst_face.y = 518;
+	BAR->dst_face.w = 150;
+	BAR->dst_face.h = 150;
+	BAR->dst_health.x = 0;
+	BAR->dst_health.y = 668;
+	BAR->dst_health.w = 150;
+	BAR->dst_health.h = 100;
+	BAR->dst_arms.x = 847;
+	BAR->dst_arms.y = 518;
+	BAR->dst_arms.w = 220;
+	BAR->dst_arms.h = 30;
+	BAR->dst_fuck.x = 490;
+	BAR->dst_fuck.y = 470;
+	BAR->dst_fuck.w = 260;
+	BAR->dst_fuck.h = 300;
 }
 
-void	init_bar(t_pool *pool)
+void			init_bar(t_pool *pool)
 {
-	pool->bar->face_img = IMG_Load("./pics/bar/face.png");
-	pool->bar->health_img = IMG_Load("./pics/bar/health.png");
-	pool->bar->arms_img = IMG_Load("./pics/bar/all_arms.png");
-	pool->bar->fuck_img = IMG_Load("./pics/weapon/fuck.png");
-
-	pool->bar->face = TEX_FMR_SRF(pool->sdl->rend, pool->bar->face_img);
-	pool->bar->health = TEX_FMR_SRF(pool->sdl->rend, pool->bar->health_img);
-	pool->bar->arms = TEX_FMR_SRF(pool->sdl->rend, pool->bar->arms_img);
-	pool->bar->fuck = TEX_FMR_SRF(pool->sdl->rend, pool->bar->fuck_img);
-
+	BAR->face_img = IMG_Load("./pics/bar/face.png");
+	BAR->health_img = IMG_Load("./pics/bar/health.png");
+	BAR->arms_img = IMG_Load("./pics/bar/all_arms.png");
+	BAR->fuck_img = IMG_Load("./pics/weapon/fuck.png");
+	BAR->face = TEX_FMR_SRF(pool->sdl->rend, BAR->face_img);
+	BAR->health = TEX_FMR_SRF(pool->sdl->rend, BAR->health_img);
+	BAR->arms = TEX_FMR_SRF(pool->sdl->rend, BAR->arms_img);
+	BAR->fuck = TEX_FMR_SRF(pool->sdl->rend, BAR->fuck_img);
 	else_bar(pool);
-	pool->bar->Sfuck.x = 0;
-	pool->bar->Sfuck.y = 0;
-	pool->bar->Sfuck.w = 1024;
-	pool->bar->Sfuck.h = 768;
-	pool->bar->Dfuck.x = 490;
-	pool->bar->Dfuck.y = 470;
-	pool->bar->Dfuck.w = 260;
-	pool->bar->Dfuck.h = 300;
 }

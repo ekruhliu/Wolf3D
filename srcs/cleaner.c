@@ -22,7 +22,7 @@ void	cleaner(t_pool *pool)
 		free(pool->textures[i]);
 		i++;
 	}
-	free(pool->map);
+	free(MAP);
 	free(pool->sdl);
 	free(pool->ray_cast);
 	free(pool->draw_tex);

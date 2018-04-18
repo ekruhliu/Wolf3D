@@ -53,7 +53,7 @@ void	map_height(char *argv, t_pool *pool)
 	pool->len_map_y = height;
 }
 
-char		*read_file(char *argv)
+char	*read_file(char *argv)
 {
 	char	*res;
 	char	*tmp;

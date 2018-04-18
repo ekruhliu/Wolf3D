@@ -14,26 +14,26 @@
 
 void	init_textures(t_pool *pool)
 {
-	make_textures(pool->textures[0], "./pics/walls/redbrick.png");			// 1
-	make_textures(pool->textures[1], "./pics/walls/multibrick.png");		// 2
-	make_textures(pool->textures[2], "./pics/walls/greystone.png");			// 3
-	make_textures(pool->textures[3], "./pics/walls/door_stone.png");		// 4
-	make_textures(pool->textures[4], "./pics/walls/wood.png");				// 5
-	make_textures(pool->textures[5], "./pics/walls/bluestone.png");			// 6
-	make_textures(pool->textures[6], "./pics/walls/bluestone_v2.png");		// 7
-	make_textures(pool->textures[7], "./pics/walls/sandstone.png");			// 8
-	make_textures(pool->textures[8], "./pics/walls/blue_metal_door.png");	// 9
-	make_textures(pool->textures[9], "./pics/walls/metal_button.png");		// 10
-	make_textures(pool->textures[10], "./pics/walls/metal.png");			// 11
-	make_textures(pool->textures[11], "./pics/walls/hitler_pict_wood.png");	// 12
-	make_textures(pool->textures[12], "./pics/walls/cross_wood.png");		// 13
-	make_textures(pool->textures[13], "./pics/walls/eagle.png");			// 14
-	make_textures(pool->textures[14], "./pics/walls/sws_redbrick.png");		// 15
-	make_textures(pool->textures[15], "./pics/walls/hitler_pict.png");		// 16
-	make_textures(pool->textures[16], "./pics/walls/swas_flag.png");		// 17
-	make_textures(pool->textures[17], "./pics/walls/eagle_pict.png");		// 18
-	make_textures(pool->textures[18], "./pics/walls/mozaik_hitler.png");	// 19
-	make_textures(pool->textures[19], "./pics/walls/hitler.png");			// 20
-	make_textures(pool->textures[20], "./pics/walls/eagle_w_swas.png");		// 21
-	make_textures(pool->textures[21], "./pics/walls/swas_flag_sandsquare.png");		// 22
+	make_textures(pool, TEXTURE[0], "./pics/walls/redbrick.png");
+	make_textures(pool, TEXTURE[1], "./pics/walls/multibrick.png");
+	make_textures(pool, TEXTURE[2], "./pics/walls/greystone.png");
+	make_textures(pool, TEXTURE[3], "./pics/walls/door_stone.png");
+	make_textures(pool, TEXTURE[4], "./pics/walls/wood.png");
+	make_textures(pool, TEXTURE[5], "./pics/walls/bluestone.png");
+	make_textures(pool, TEXTURE[6], "./pics/walls/bluestone_v2.png");
+	make_textures(pool, TEXTURE[7], "./pics/walls/sandstone.png");
+	make_textures(pool, TEXTURE[8], "./pics/walls/blue_metal_door.png");
+	make_textures(pool, TEXTURE[9], "./pics/walls/metal_button.png");
+	make_textures(pool, TEXTURE[10], "./pics/walls/metal.png");
+	make_textures(pool, TEXTURE[11], "./pics/walls/hitler_pict_wood.png");
+	make_textures(pool, TEXTURE[12], "./pics/walls/cross_wood.png");
+	make_textures(pool, TEXTURE[13], "./pics/walls/eagle.png");
+	make_textures(pool, TEXTURE[14], "./pics/walls/sws_redbrick.png");
+	make_textures(pool, TEXTURE[15], "./pics/walls/hitler_pict.png");
+	make_textures(pool, TEXTURE[16], "./pics/walls/swas_flag.png");
+	make_textures(pool, TEXTURE[17], "./pics/walls/eagle_pict.png");
+	make_textures(pool, TEXTURE[18], "./pics/walls/mozaik_hitler.png");
+	make_textures(pool, TEXTURE[19], "./pics/walls/hitler.png");
+	make_textures(pool, TEXTURE[20], "./pics/walls/eagle_w_swas.png");
+	make_textures(pool, TEXTURE[21], "./pics/walls/swas_flag_sandsquare.png");
 }

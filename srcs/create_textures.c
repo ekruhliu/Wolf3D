@@ -20,7 +20,7 @@ static int		save_color(void *pixels, int i)
 	return (tmp[i + 2] << 16 | tmp[i + 1] << 8 | tmp[i]);
 }
 
-void		make_textures(int *textures, const char *file)
+void			make_textures(t_pool *pool, int *texture, const char *file)
 {
 	SDL_Surface	*surface;
 	int			i;
@@ -30,10 +30,10 @@ void		make_textures(int *textures, const char *file)
 	i = 0;
 	k = 0;
 	surface = IMG_Load(file);
-	size = texture_H * texture_W;
+	size = TEXTURE_H * TEXTURE_W;
 	while (i < size)
 	{
-		textures[i] = save_color(surface->pixels, k);
+		texture[i] = save_color(surface->pixels, k);
 		k += 4;
 		i++;
 	}
@@ -47,13 +47,13 @@ void			create_textures(t_pool *pool)
 	i = 0;
 	while (i < 22)
 	{
-		pool->textures[i] = malloc(sizeof(int) * (texture_W * texture_H));
+		TEXTURE[i] = malloc(sizeof(int) * (TEXTURE_W * TEXTURE_H));
 		i++;
 	}
 	init_textures(pool);
 }
 
-void		from_nth_to_texture(t_pool *pool)
+void			from_nth_to_texture(t_pool *pool)
 {
 	int x;
 	int y;
@@ -66,13 +66,13 @@ void		from_nth_to_texture(t_pool *pool)
 		x = 0;
 		while (x < W)
 		{
-			pool->sdl->rend_arr[i] = pool->sdl->tex_arr[x][y];
-			pool->sdl->tex_arr[x][y] = 0;
+			REND_ARR[i] = TEXT_ARR[x][y];
+			TEXT_ARR[x][y] = 0;
 			i++;
 			x++;
 		}
 		y++;
 	}
-	SDL_UpdateTexture(pool->sdl->screen_tex, NULL, pool->sdl->rend_arr, (W * 4));
-	ft_bzero(pool->sdl->rend_arr, W * H);
+	SDL_UpdateTexture(pool->sdl->screen_tex, NULL, REND_ARR, (W * 4));
+	ft_bzero(REND_ARR, W * H);
 }

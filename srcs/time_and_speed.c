@@ -17,6 +17,6 @@ void	time_and_speed(t_pool *pool)
 	pool->old_time = pool->time;
 	pool->time = SDL_GetTicks();
 	pool->frame_time = (pool->time - pool->old_time) / 1000.0;
-	pool->move_speed = pool->frame_time * pool->speed_val;
-	pool->rot_speed = pool->frame_time * 3.0;
+	MOVE_SPEED = pool->frame_time * pool->speed_val;
+	ROT_SPEED = pool->frame_time * 3.0;
 }

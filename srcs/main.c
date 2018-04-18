@@ -16,14 +16,14 @@ static void	variables(t_pool *pool)
 {
 	pool->time = 0;
 	pool->old_time = 0;
-	pool->sdl->SrcR.x = 0;
-	pool->sdl->SrcR.y = 0;
-	pool->sdl->SrcR.w = 1024;
-	pool->sdl->SrcR.h = 768;
-	pool->sdl->DestR.x = 0;
-	pool->sdl->DestR.y = 0;
-	pool->sdl->DestR.w = 1024;
-	pool->sdl->DestR.h = 768;
+	pool->sdl->src_r.x = 0;
+	pool->sdl->src_r.y = 0;
+	pool->sdl->src_r.w = 1024;
+	pool->sdl->src_r.h = 768;
+	pool->sdl->dst_r.x = 0;
+	pool->sdl->dst_r.y = 0;
+	pool->sdl->dst_r.w = 1024;
+	pool->sdl->dst_r.h = 768;
 	pool->vector_y = 0;
 	pool->vector_x = -1;
 	pool->plane_x = 0;
@@ -35,6 +35,8 @@ static void	variables(t_pool *pool)
 	pool->weapon->pistol_attack = 0;
 	pool->speed_val = 4.0;
 	pool->doors->time_door = 0;
+	pool->texture_w = 64;
+	pool->texture_h = 64;
 }
 
 static void	part_one(t_pool *pool, char *argv)
@@ -45,6 +47,17 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->bar = malloc(sizeof(t_bar));
 	pool->weapon = malloc(sizeof(t_weapon));
 	pool->doors = malloc(sizeof(t_doors));
+	// int i;
+	// for(i = 0; i < SDL_GetNumAudioDrivers(); ++i)
+	// {
+	// 	pool->sdl->driver_name = SDL_GetAudioDriver(i);
+	// 	if (SDL_AudioInit(pool->sdl->driver_name))
+	// 	{
+	// 		ft_putstr("\033[1;31mAudio driver failed to initialize\n\e[m");
+	// 		continue;
+	// 	}
+	// 	SDL_AudioQuit();
+	// }
 	variables(pool);
 	map_widthe(argv, pool);
 	map_height(argv, pool);
@@ -77,24 +90,20 @@ static void	part_two(t_pool *pool)
 static void	part_three(t_pool *pool)
 {
 	SDL_DestroyRenderer(pool->sdl->rend);
-	SDL_DestroyWindow(pool->sdl->win);
+	SDL_DestroyWindow(WIN);
 	SDL_Quit();
 	cleaner(pool);
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
+	int		x;
+	t_pool	*pool;
+
 	if (argc > 1 && argv[1])
 	{
-		int		x;
-		t_pool	*pool;
-
 		pool = malloc(sizeof(t_pool));
-		if (argv[2])
-		{
-			if (ft_atoi(argv[2]) == 1)
-				pool->mp = 1;
-		}
+		check_mand(pool, argv[2]);
 		part_one(pool, argv[1]);
 		while (!pool->sdl->done)
 		{
@@ -102,15 +111,11 @@ int	main(int argc, char **argv)
 			while (x < W)
 			{
 				ray_casting(pool, x);
-	
 				draw_textures(pool, x);
-	
 				draw_floor_and_ceiling(pool, x);
-	
 				x++;
 			}
 			part_two(pool);
-
 		}
 		part_three(pool);
 	}

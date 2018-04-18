@@ -21,3 +21,12 @@ void	error(void)
 {
 	ft_putstr("\033[1;31mERROR\n\e[m");
 }
+
+void	check_mand(t_pool *pool, char *argv)
+{
+	if (argv)
+	{
+		if (ft_atoi(argv) == 1)
+			pool->mp = 1;
+	}
+}

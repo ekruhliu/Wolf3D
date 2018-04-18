@@ -12,46 +12,66 @@
 
 #include "../includes/wolf.h"
 
-void	shots(t_pool *pool)
+static	void	part_one(t_pool *pool)
 {
-	if (pool->sdl->event.type == SDL_KEYDOWN && SPACE && pool->weapon->act_knife == 1)
+	if (EVENT_TYPE == SDL_KEYDOWN && SPACE && WEAPON->act_knife == 1)
 	{
-		pool->weapon->act_knife = 0;
-		pool->weapon->knife_attack = 1;
+		WEAPON->act_knife = 0;
+		WEAPON->knife_attack = 1;
 	}
-	if (pool->sdl->event.type == SDL_KEYUP && SPACE && pool->weapon->knife_attack == 1)
+	if (EVENT_TYPE == SDL_KEYUP && SPACE && WEAPON->knife_attack == 1)
 	{
-		pool->weapon->act_knife = 1;
-		pool->weapon->knife_attack = 0;
+		WEAPON->act_knife = 1;
+		WEAPON->knife_attack = 0;
 	}
-	if (pool->sdl->event.type == SDL_KEYDOWN && SPACE && pool->weapon->act_pistol == 1)
+	if (EVENT_TYPE == SDL_KEYDOWN && SPACE && WEAPON->act_pistol == 1)
 	{
-		pool->weapon->act_pistol = 0;
-		pool->weapon->pistol_attack = 1;
+		WEAPON->act_pistol = 0;
+		WEAPON->pistol_attack = 1;
 	}
-	if (pool->sdl->event.type == SDL_KEYUP && SPACE && pool->weapon->pistol_attack == 1)
+	if (EVENT_TYPE == SDL_KEYUP && SPACE && WEAPON->pistol_attack == 1)
 	{
-		pool->weapon->act_pistol = 1;
-		pool->weapon->pistol_attack = 0;
+		WEAPON->act_pistol = 1;
+		WEAPON->pistol_attack = 0;
 	}
-	if (pool->sdl->event.type == SDL_KEYDOWN && SPACE && pool->weapon->act_mp40 == 1)
+	if (EVENT_TYPE == SDL_KEYDOWN && SPACE && WEAPON->act_chainsaw == 1)
 	{
-		pool->weapon->act_mp40 = 0;
-		pool->weapon->mp40_attack = 1;
+		WEAPON->act_chainsaw = 0;
+		WEAPON->chainsaw_attack = 1;
 	}
-	if (pool->sdl->event.type == SDL_KEYUP && SPACE && pool->weapon->mp40_attack == 1)
+}
+
+static	void	part_two(t_pool *pool)
+{
+	if (EVENT_TYPE == SDL_KEYDOWN && SPACE && WEAPON->act_mp40 == 1)
 	{
-		pool->weapon->act_mp40 = 1;
-		pool->weapon->mp40_attack = 0;
+		WEAPON->act_mp40 = 0;
+		WEAPON->mp40_attack = 1;
 	}
-	if (pool->sdl->event.type == SDL_KEYDOWN && SPACE && pool->weapon->act_shotgun == 1)
+	if (EVENT_TYPE == SDL_KEYUP && SPACE && WEAPON->mp40_attack == 1)
 	{
-		pool->weapon->act_shotgun = 0;
-		pool->weapon->shotgun_attack = 1;
+		WEAPON->act_mp40 = 1;
+		WEAPON->mp40_attack = 0;
 	}
-	if (pool->sdl->event.type == SDL_KEYUP && SPACE && pool->weapon->shotgun_attack == 1)
+	if (EVENT_TYPE == SDL_KEYDOWN && SPACE && WEAPON->act_shotgun == 1)
 	{
-		pool->weapon->act_shotgun = 1;
-		pool->weapon->shotgun_attack = 0;
+		WEAPON->act_shotgun = 0;
+		WEAPON->shotgun_attack = 1;
 	}
+	if (EVENT_TYPE == SDL_KEYUP && SPACE && WEAPON->shotgun_attack == 1)
+	{
+		WEAPON->act_shotgun = 1;
+		WEAPON->shotgun_attack = 0;
+	}
+	if (EVENT_TYPE == SDL_KEYUP && SPACE && WEAPON->chainsaw_attack == 1)
+	{
+		WEAPON->act_chainsaw = 1;
+		WEAPON->chainsaw_attack = 0;
+	}
+}
+
+void			shots(t_pool *pool)
+{
+	part_one(pool);
+	part_two(pool);
 }

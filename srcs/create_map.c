@@ -12,16 +12,25 @@
 
 #include "../includes/wolf.h"
 
-static	void	part_one(t_pool *pool)
+static	void	part_one(t_pool *pool, char **tab)
 {
 	int i;
+	int n;
 
 	i = 0;
+	n = 0;
 	pool->map = (int**)malloc(sizeof(int*) * pool->len_map_y);
 	while (i < pool->len_map_y)
 	{
 		pool->map[i] = (int*)malloc(sizeof(int) * pool->len_map_x);
 		i++;
+	}
+	while (tab[n] != 0)
+		n++;
+	if ((pool->len_map_x * pool->len_map_y) != n)
+	{
+		ft_putstr("\033[1;31mERROR\n\e[m");
+		exit(1);
 	}
 }
 
@@ -44,8 +53,6 @@ static	void	part_two(t_pool *pool, char **tab)
 				pool->pos_y = (double)x + 0.1;
 				pool->pos_x = (double)y + 0.1;
 			}
-			// if (!tab[elem][0])
-			// 	pool->map[y][x] = 0;
 			pool->map[y][x] = ft_atoi(tab[elem]);
 			if (pool->map[y][x] > 22 || pool->map[y][x] < 0)
 				pool->map[y][x] = 0;
@@ -81,7 +88,7 @@ static	void	part_three(t_pool *pool)
 	}
 }
 
-void	create_map(char *argv, t_pool *pool)
+void			create_map(char *argv, t_pool *pool)
 {
 	int		i;
 	char	*line;
@@ -90,7 +97,7 @@ void	create_map(char *argv, t_pool *pool)
 	i = 0;
 	line = read_file(argv);
 	tab = ft_strsplit(line, ' ');
-	part_one(pool);
+	part_one(pool, tab);
 	part_two(pool, tab);
 	part_three(pool);
 	while (i < pool->len_map_y)

@@ -12,7 +12,22 @@
 
 #include "../includes/wolf.h"
 
-void	cleaner(t_pool *pool)
+static	void	clear_textures(t_pool *pool)
+{
+	SDL_DestroyTexture(WEAPON->knife);
+	SDL_DestroyTexture(WEAPON->pistol);
+	SDL_DestroyTexture(WEAPON->mp40);
+	SDL_DestroyTexture(WEAPON->shotgun);
+	SDL_DestroyTexture(WEAPON->chainsaw);
+	SDL_DestroyTexture(WEAPON->pistol_attack_tex);
+	SDL_DestroyTexture(WEAPON->knife_attack_tex);
+	SDL_DestroyTexture(WEAPON->mp40_attack_tex);
+	SDL_DestroyTexture(WEAPON->shotgun_attack_tex);
+	SDL_DestroyTexture(pool->sdl->screen_tex);
+	SDL_DestroyRenderer(pool->sdl->rend);
+}
+
+void			cleaner(t_pool *pool)
 {
 	int i;
 
@@ -29,17 +44,7 @@ void	cleaner(t_pool *pool)
 		i++;
 	}
 	free(MAP);
-	SDL_DestroyTexture(WEAPON->knife);
-	SDL_DestroyTexture(WEAPON->pistol);
-	SDL_DestroyTexture(WEAPON->mp40);
-	SDL_DestroyTexture(WEAPON->shotgun);
-	SDL_DestroyTexture(WEAPON->chainsaw);
-	SDL_DestroyTexture(WEAPON->pistol_attack_tex);
-	SDL_DestroyTexture(WEAPON->knife_attack_tex);
-	SDL_DestroyTexture(WEAPON->mp40_attack_tex);
-	SDL_DestroyTexture(WEAPON->shotgun_attack_tex);
-	SDL_DestroyTexture(pool->sdl->screen_tex);
-	SDL_DestroyRenderer(pool->sdl->rend);
+	clear_textures(pool);
 	free(pool->sdl);
 	free(pool->ray_cast);
 	free(pool->draw_tex);
@@ -49,7 +54,7 @@ void	cleaner(t_pool *pool)
 	free(pool);
 }
 
-void	clear_surfs(t_pool *pool)
+void			clear_surfs(t_pool *pool)
 {
 	SDL_FreeSurface(WEAPON->pistol_img);
 	SDL_FreeSurface(WEAPON->knife_img);

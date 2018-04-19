@@ -24,6 +24,7 @@ void	clear_weapon(t_pool *pool)
 	WEAPON->act_shotgun = 0;
 	WEAPON->shotgun_attack = 0;
 	WEAPON->act_chainsaw = 0;
+	WEAPON->chainsaw_attack = 0;
 }
 
 int		check_attack(t_pool *pool)

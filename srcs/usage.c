@@ -12,6 +12,13 @@
 
 #include "../includes/wolf.h"
 
+void	just_exit(t_pool *pool)
+{
+	SDL_DestroyWindow(WIN);
+	cleaner(pool);;
+	SDL_Quit();
+}
+
 void	usage(void)
 {
 	ft_putstr("\033[1;31musage: ./wolf3d MapName\n\e[m");
@@ -23,11 +30,13 @@ void	error(void)
 	ft_putstr("\033[1;31mERROR\n\e[m");
 }
 
-void	check_mand(t_pool *pool, char *argv)
+void	check_mand_and_leaks(t_pool *pool, char *arg, char *arg_2)
 {
-	if (argv)
+	if (arg || arg_2)
 	{
-		if (ft_strequ("mandatory", argv) == 1)
+		if ((CHEK("mandatory", arg) == 1) || (CHEK("mandatory", arg_2) == 1))
 			pool->mp = 1;
+		if ((CHEK("leaks", arg) == 1) || (CHEK("leaks", arg) == 1))
+			pool->check_leak = 1;
 	}
 }

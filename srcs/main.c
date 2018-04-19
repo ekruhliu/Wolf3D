@@ -62,9 +62,10 @@ static void	part_one(t_pool *pool, char *argv)
 	map_height(argv, pool);
 	map_widthe(argv, pool);
 	create_map(argv, pool);
+	// system("leaks wolf3d");
+	// exit(1);
 	if (!pool->pos_x && !pool->pos_y)
 	{
-		printf("test2\n");
 		ft_putstr("\033[1;31mERROR\n\e[m");
 		exit(1);
 	}
@@ -95,23 +96,18 @@ static void	part_two(t_pool *pool)
 	keys(pool);
 }
 
-static void	part_three(t_pool *pool)
-{
-	SDL_DestroyRenderer(pool->sdl->rend);
-	SDL_DestroyWindow(WIN);
-	SDL_Quit();
-	cleaner(pool);
-}
-
 int			main(int argc, char **argv)
 {
 	int		x;
+	int		leaks;
 	t_pool	*pool;
 
+	leaks = 0;
 	if (argc > 1 && argv[1])
 	{
 		pool = malloc(sizeof(t_pool));
-		check_mand(pool, argv[2]);
+		check_mand_and_leaks(pool, argv[2], argv[3]);
+		// check_leaks(pool, argv[3]);
 		part_one(pool, argv[1]);
 		while (!pool->sdl->done)
 		{
@@ -125,11 +121,12 @@ int			main(int argc, char **argv)
 			}
 			part_two(pool);
 		}
-		part_three(pool);
+		leaks = pool->check_leak;
+		just_exit(pool);
 	}
 	else
 		usage();
-	// while (1);
-	system("leaks wolf3d");
+	if (leaks == 1)
+		system("leaks wolf3d");
 	return (0);
 }

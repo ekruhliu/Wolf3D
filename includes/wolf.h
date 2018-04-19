@@ -111,6 +111,8 @@ typedef struct		s_bar
 	SDL_Surface		*health_img;
 	SDL_Surface		*arms_img;
 	SDL_Surface		*fuck_img;
+	// SDL_Surface		*mini_map_img;
+	// SDL_Texture		*mini_map;
 	SDL_Texture		*face;
 	SDL_Texture		*health;
 	SDL_Texture		*arms;
@@ -119,6 +121,7 @@ typedef struct		s_bar
 	SDL_Rect		dst_health;
 	SDL_Rect		dst_arms;
 	SDL_Rect		dst_fuck;
+	SDL_Rect		d_map;
 	int				act_fuck;
 }					t_bar;
 
@@ -193,7 +196,7 @@ typedef	struct		s_sdl
 	Uint32			render_flags;
 	Uint32			tex_arr[W][H];
 	Uint32			rend_arr[W * H];
-	const	char	*driver_name;
+	// const	char	*driver_name;
 }					t_sdl;
 
 typedef	struct		s_draw_tex
@@ -249,6 +252,7 @@ typedef	struct		s_pool
 	int			mp;
 	int			texture_w;
 	int			texture_h;
+	char		**tab;
 	t_sdl		*sdl;
 	t_ray_cast	*ray_cast;
 	t_draw_tex	*draw_tex;

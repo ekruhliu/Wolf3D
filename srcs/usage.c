@@ -14,7 +14,8 @@
 
 void	usage(void)
 {
-	ft_putstr("\033[1;31musage: ./wolf3d MAP NAME\n\e[m");
+	ft_putstr("\033[1;31musage: ./wolf3d MapName\n\e[m");
+	ft_putstr("\033[1;31mMandatory part: ./wolf3d MapName mandatory\n\e[m");
 }
 
 void	error(void)
@@ -26,7 +27,7 @@ void	check_mand(t_pool *pool, char *argv)
 {
 	if (argv)
 	{
-		if (ft_atoi(argv) == 1)
+		if (ft_strequ("mandatory", argv) == 1)
 			pool->mp = 1;
 	}
 }

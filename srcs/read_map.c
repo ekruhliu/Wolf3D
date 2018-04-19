@@ -29,6 +29,13 @@ void	map_widthe(char *argv, t_pool *pool)
 	tab = ft_strsplit(argv, ' ');
 	while (tab[widthe])
 		widthe++;
+	int i = 0;
+	while (i < widthe)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 	while (get_next_line(fd, &argv) > 0)
 		free(argv);
 	free(argv);

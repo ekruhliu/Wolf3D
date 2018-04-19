@@ -59,11 +59,12 @@ static void	part_one(t_pool *pool, char *argv)
 	// 	SDL_AudioQuit();
 	// }
 	variables(pool);
-	map_widthe(argv, pool);
 	map_height(argv, pool);
+	map_widthe(argv, pool);
 	create_map(argv, pool);
 	if (!pool->pos_x && !pool->pos_y)
 	{
+		printf("test2\n");
 		ft_putstr("\033[1;31mERROR\n\e[m");
 		exit(1);
 	}
@@ -71,6 +72,8 @@ static void	part_one(t_pool *pool, char *argv)
 	initialization(pool);
 	init_bar(pool);
 	init_weapon(pool);
+	// BAR->mini_map_img->pixels = argv;
+	// BAR->mini_map = TEX_FMR_SRF(RENDER, BAR->mini_map_img);
 	clear_surfs(pool);
 }
 
@@ -81,6 +84,11 @@ static void	part_two(t_pool *pool)
 	from_nth_to_texture(pool);
 	time_and_speed(pool);
 	SDL_SetRenderDrawColor(pool->sdl->rend, 0, 0, 0, SDL_ALPHA_OPAQUE);
+	// BAR->d_map.x = 300;
+	// BAR->d_map.y = 300;
+	// BAR->d_map.w = 500;
+	// BAR->d_map.h = 350;
+	// REND_CPY(RENDER, BAR->mini_map, &SRC_R, &BAR->d_map);
 	draw_weapon_and_bar(pool);
 	SDL_RenderPresent(pool->sdl->rend);
 	SDL_RenderClear(pool->sdl->rend);
@@ -121,5 +129,7 @@ int			main(int argc, char **argv)
 	}
 	else
 		usage();
+	// while (1);
+	system("leaks wolf3d");
 	return (0);
 }

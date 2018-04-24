@@ -29,7 +29,7 @@ void	clear_weapon(t_pool *pool)
 
 int		check_attack(t_pool *pool)
 {
-	if (pool->bar->act_fuck != 0)
+	if (BAR->act_fuck != 0)
 		return (1);
 	if (WEAPON->knife_attack != 0)
 		return (1);
@@ -39,7 +39,7 @@ int		check_attack(t_pool *pool)
 		return (1);
 	if (WEAPON->shotgun_attack != 0)
 		return (1);
-	if (WEAPON->act_chainsaw != 0)
+	if (WEAPON->chainsaw_attack != 0)
 		return (1);
 	return (0);
 }

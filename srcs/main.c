@@ -106,8 +106,7 @@ int			main(int argc, char **argv)
 	if (argc > 1 && argv[1])
 	{
 		pool = malloc(sizeof(t_pool));
-		check_mand_and_leaks(pool, argv[2], argv[3]);
-		// check_leaks(pool, argv[3]);
+		check_mand(pool, argv[2]);
 		part_one(pool, argv[1]);
 		while (!pool->sdl->done)
 		{
@@ -126,7 +125,5 @@ int			main(int argc, char **argv)
 	}
 	else
 		usage();
-	if (leaks == 1)
-		system("leaks wolf3d");
 	return (0);
 }

@@ -291,7 +291,7 @@ void				init_textures(t_pool *pool);
 void				make_textures(t_pool *pool, int *texture, const char *file);
 void				shots(t_pool *pool);
 void				n_s_e_w(t_pool *pool, int x);
-void				check_mand_and_leaks(t_pool *pool, char *arg, char *arg_2);
+void				check_mand(t_pool *pool, char *arg);
 void				draw_weapon_and_bar(t_pool *pool);
 void				just_exit(t_pool *pool);
 

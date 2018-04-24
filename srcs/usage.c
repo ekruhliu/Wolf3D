@@ -30,13 +30,11 @@ void	error(void)
 	ft_putstr("\033[1;31mERROR\n\e[m");
 }
 
-void	check_mand_and_leaks(t_pool *pool, char *arg, char *arg_2)
+void	check_mand(t_pool *pool, char *arg)
 {
-	if (arg || arg_2)
+	if (arg)
 	{
-		if ((CHEK("mandatory", arg) == 1) || (CHEK("mandatory", arg_2) == 1))
+		if ((CHEK("mandatory", arg) == 1))
 			pool->mp = 1;
-		if ((CHEK("leaks", arg) == 1) || (CHEK("leaks", arg) == 1))
-			pool->check_leak = 1;
 	}
 }

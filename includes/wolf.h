@@ -105,6 +105,11 @@
 # define TEXTURE pool->textures
 # define SRC_R pool->sdl->src_r
 # define CHEK ft_strequ
+# define DOOR pool->doors->door_act
+# define CREATE_SURF SDL_CreateRGBSurface
+# define LEN_X pool->len_map_x
+# define LEN_Y pool->len_map_y
+# define MM mini_map
 
 typedef struct		s_bar
 {
@@ -112,8 +117,8 @@ typedef struct		s_bar
 	SDL_Surface		*health_img;
 	SDL_Surface		*arms_img;
 	SDL_Surface		*fuck_img;
-	// SDL_Surface		*mini_map_img;
-	// SDL_Texture		*mini_map;
+	SDL_Surface		*mini_map_img;
+	SDL_Texture		*mini_map_tex;
 	SDL_Texture		*face;
 	SDL_Texture		*health;
 	SDL_Texture		*arms;
@@ -124,6 +129,7 @@ typedef struct		s_bar
 	SDL_Rect		dst_fuck;
 	SDL_Rect		d_map;
 	int				act_fuck;
+	int				*mini_map;
 }					t_bar;
 
 typedef	struct		s_weapon
@@ -197,7 +203,6 @@ typedef	struct		s_sdl
 	Uint32			render_flags;
 	Uint32			tex_arr[W][H];
 	Uint32			rend_arr[W * H];
-	// const	char	*driver_name;
 }					t_sdl;
 
 typedef	struct		s_draw_tex
@@ -223,6 +228,7 @@ typedef	struct		s_draw_tex
 
 typedef	struct		s_doors
 {
+	int				door_act;
 	int				blue_door_x;
 	int				blue_door_y;
 	long			time_door;
@@ -253,7 +259,6 @@ typedef	struct		s_pool
 	int			mp;
 	int			texture_w;
 	int			texture_h;
-	int			check_leak;
 	t_sdl		*sdl;
 	t_ray_cast	*ray_cast;
 	t_draw_tex	*draw_tex;
@@ -294,5 +299,6 @@ void				n_s_e_w(t_pool *pool, int x);
 void				check_mand(t_pool *pool, char *arg);
 void				draw_weapon_and_bar(t_pool *pool);
 void				just_exit(t_pool *pool);
+void				make_minimap(t_pool *pool);
 
 #endif

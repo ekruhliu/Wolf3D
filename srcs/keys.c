@@ -55,12 +55,13 @@ static	void	take_weapon(t_pool *pool)
 
 static	void	open_doors(t_pool *pool)
 {
-	if (pool->map[MAP_X][MAP_Y] == 9 && KEY_STATE[SDL_SCANCODE_E])
+	if (pool->map[MAP_X][MAP_Y] == 9 && KEY_STATE[SDL_SCANCODE_E] && DOOR == 0)
 	{
+		DOOR = 1;
 		pool->map[MAP_X][MAP_Y] = 0;
 		pool->doors->blue_door_x = MAP_Y;
 		pool->doors->blue_door_y = MAP_X;
-		pool->doors->time_door = time(NULL) + 4;
+		pool->doors->time_door = time(NULL) + 2;
 	}
 	if (pool->map[MAP_X][MAP_Y] == 2 && KEY_STATE[SDL_SCANCODE_E])
 		pool->map[MAP_X][MAP_Y] = 0;

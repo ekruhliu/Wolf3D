@@ -15,7 +15,7 @@
 void	just_exit(t_pool *pool)
 {
 	SDL_DestroyWindow(WIN);
-	cleaner(pool);;
+	cleaner(pool);
 	SDL_Quit();
 }
 

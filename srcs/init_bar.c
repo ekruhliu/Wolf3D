@@ -23,7 +23,7 @@ static	void	else_bar(t_pool *pool)
 	BAR->dst_health.w = 150;
 	BAR->dst_health.h = 100;
 	BAR->dst_arms.x = 847;
-	BAR->dst_arms.y = 518;
+	BAR->dst_arms.y = 528;
 	BAR->dst_arms.w = 220;
 	BAR->dst_arms.h = 30;
 	BAR->dst_fuck.x = 490;

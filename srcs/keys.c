@@ -84,11 +84,15 @@ void			keys(t_pool *pool)
 	if (EVENT_TYPE == SDL_KEYDOWN && KEY_SCANCODE == SDL_SCANCODE_F && (CHECK))
 	{
 		clear_weapon(pool);
+		system("afplay ./music/fuck.mp3 &");
 		pool->bar->act_fuck = 1;
 	}
 	take_weapon(pool);
 	if (EVENT_TYPE == SDL_KEYUP && KEY_SCANCODE == SDL_SCANCODE_F)
+	{
+		system("pkill pgrep afplay");
 		pool->bar->act_fuck = 0;
+	}
 	if (KEY_SCANCODE == SDL_SCANCODE_ESCAPE)
 		DONE = SDL_TRUE;
 	if (EVENT_TYPE == SDL_KEYDOWN && KEY_SCANCODE == SDL_SCANCODE_LSHIFT)

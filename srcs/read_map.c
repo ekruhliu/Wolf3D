@@ -42,12 +42,14 @@ void		map_widthe(char *argv, t_pool *pool)
 		error();
 		exit(1);
 	}
-	free(argv);
+	if (argv)
+		free(argv);
 	tab = ft_strsplit(argv, ' ');
 	widthe = clean_tab(tab);
 	while (get_next_line(fd, &argv) > 0)
+		ft_strdel(&argv);
+	if (argv)
 		free(argv);
-	free(argv);
 	close(fd);
 	pool->len_map_x = widthe;
 }
@@ -62,9 +64,10 @@ void		map_height(char *argv, t_pool *pool)
 	while (get_next_line(fd, &argv) > 0)
 	{
 		height++;
-		free(argv);
+		ft_strdel(&argv);
 	}
-	free(argv);
+	if (argv)
+		free(argv);
 	close(fd);
 	pool->len_map_y = height;
 }
@@ -80,16 +83,17 @@ char		*read_file(char *argv)
 	while (get_next_line(fd, &argv) > 0)
 	{
 		tmp = ft_strdup(res);
-		free(res);
+		ft_strdel(&res);
 		res = ft_strjoin(tmp, " ");
-		free(tmp);
+		ft_strdel(&tmp);
 		tmp = ft_strdup(res);
-		free(res);
+		ft_strdel(&res);
 		res = ft_strjoin(tmp, argv);
-		free(tmp);
-		free(argv);
+		ft_strdel(&tmp);
+		ft_strdel(&argv);
 	}
-	free(argv);
+	if (argv)
+		free(argv);
 	close(fd);
 	return (res);
 }

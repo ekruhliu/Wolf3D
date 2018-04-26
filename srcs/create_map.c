@@ -101,11 +101,12 @@ void			create_map(char *argv, t_pool *pool)
 	part_one(pool, tab);
 	part_two(pool, tab);
 	part_three(pool);
-	while (tab[i])
+	while (i < pool->len_map_y)
 	{
-		free(tab[i]);
+		ft_strdel(&tab[i]);
 		i++;
 	}
-	free(tab);
+	if (tab)
+		free(tab);
 	return ;
 }

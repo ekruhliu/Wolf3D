@@ -25,7 +25,6 @@ static	void	clear_textures(t_pool *pool)
 	SDL_DestroyTexture(WEAPON->shotgun_attack_tex);
 	SDL_DestroyTexture(pool->sdl->screen_tex);
 	SDL_DestroyRenderer(pool->sdl->rend);
-	SDL_DestroyTexture(BAR->mini_map_tex);
 	SDL_DestroyTexture(BAR->face);
 	SDL_DestroyTexture(BAR->health);
 	SDL_DestroyTexture(BAR->arms);
@@ -74,5 +73,4 @@ void			clear_surfs(t_pool *pool)
 	SDL_FreeSurface(WEAPON->shotgun_img);
 	SDL_FreeSurface(WEAPON->shotgun_attack_img);
 	SDL_FreeSurface(WEAPON->chainsaw_img);
-	SDL_FreeSurface(BAR->mini_map_img);
 }

@@ -49,8 +49,8 @@ static void	part_one(t_pool *pool, char *argv)
 	pool->weapon = malloc(sizeof(t_weapon));
 	pool->doors = malloc(sizeof(t_doors));
 	variables(pool);
-	map_height(argv, pool);
 	map_widthe(argv, pool);
+	map_height(argv, pool);
 	create_map(argv, pool);
 	if (!pool->pos_x && !pool->pos_y)
 	{

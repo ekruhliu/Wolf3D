@@ -62,15 +62,15 @@ static	void	var_chainsaw(t_pool *pool)
 
 void			init_weapon(t_pool *pool)
 {
-	WEAPON->pistol_img = IMG_Load("./pics/weapon/pistol.png");
-	WEAPON->knife_img = IMG_Load("./pics/weapon/knife.png");
-	WEAPON->knife_attack_img = IMG_Load("./pics/weapon/knife_2.png");
-	WEAPON->pistol_attack_img = IMG_Load("./pics/weapon/pistol_2.png");
-	WEAPON->mp40_img = IMG_Load("./pics/weapon/mp40.png");
-	WEAPON->mp40_attack_img = IMG_Load("./pics/weapon/mp40_2.png");
-	WEAPON->shotgun_img = IMG_Load("./pics/weapon/shotgun.png");
-	WEAPON->shotgun_attack_img = IMG_Load("./pics/weapon/shotgun_2.png");
-	WEAPON->chainsaw_img = IMG_Load("./pics/weapon/chainsaw.png");
+	WEAPON->pistol_img = IMG_Load("./img/weapon/pistol.png");
+	WEAPON->knife_img = IMG_Load("./img/weapon/knife.png");
+	WEAPON->knife_attack_img = IMG_Load("./img/weapon/knife_2.png");
+	WEAPON->pistol_attack_img = IMG_Load("./img/weapon/pistol_2.png");
+	WEAPON->mp40_img = IMG_Load("./img/weapon/mp40.png");
+	WEAPON->mp40_attack_img = IMG_Load("./img/weapon/mp40_2.png");
+	WEAPON->shotgun_img = IMG_Load("./img/weapon/shotgun.png");
+	WEAPON->shotgun_attack_img = IMG_Load("./img/weapon/shotgun_2.png");
+	WEAPON->chainsaw_img = IMG_Load("./img/weapon/chainsaw.png");
 	PISTOL = TEX_FMR_SRF(RENDER, WEAPON->pistol_img);
 	KNIFE = TEX_FMR_SRF(RENDER, WEAPON->knife_img);
 	KNIFE_ATTACK = TEX_FMR_SRF(RENDER, WEAPON->knife_attack_img);

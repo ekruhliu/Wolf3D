@@ -36,5 +36,7 @@ void	check_mand(t_pool *pool, char *arg)
 	{
 		if ((CHEK("mandatory", arg) == 1))
 			pool->mp = 1;
+		else
+			pool->mp = 0;
 	}
 }

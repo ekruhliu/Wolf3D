@@ -34,10 +34,10 @@ static	void	else_bar(t_pool *pool)
 
 void			init_bar(t_pool *pool)
 {
-	BAR->face_img = IMG_Load("./pics/bar/face.png");
-	BAR->health_img = IMG_Load("./pics/bar/health.png");
-	BAR->arms_img = IMG_Load("./pics/bar/all_arms.png");
-	BAR->fuck_img = IMG_Load("./pics/weapon/fuck.png");
+	BAR->face_img = IMG_Load("./img/bar/face.png");
+	BAR->health_img = IMG_Load("./img/bar/health.png");
+	BAR->arms_img = IMG_Load("./img/bar/all_arms.png");
+	BAR->fuck_img = IMG_Load("./img/weapon/fuck.png");
 	BAR->face = TEX_FMR_SRF(pool->sdl->rend, BAR->face_img);
 	BAR->health = TEX_FMR_SRF(pool->sdl->rend, BAR->health_img);
 	BAR->arms = TEX_FMR_SRF(pool->sdl->rend, BAR->arms_img);

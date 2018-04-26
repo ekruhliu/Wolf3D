@@ -32,6 +32,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 		@ make -C libft/
 		@ gcc -o $(NAME) $(OBJ) $(LIBFT) $(SDL)
+		@ echo "\033[1m\033[32mCompile!\033[0m"
 
 %.o: %.c $(HEADER)
 	@ gcc $(FLAGS) -o  $@ $<

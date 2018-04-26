@@ -14,6 +14,9 @@
 
 static	void	moves(t_pool *pool)
 {
+	KEY_SCANCODE == SDL_SCANCODE_ESCAPE ? DONE = SDL_TRUE : SDL_FALSE;
+	if (EVENT_TYPE == SDL_QUIT)
+		DONE = SDL_TRUE;
 	if (KEY_STATE[SDL_SCANCODE_UP] || KEY_STATE[SDL_SCANCODE_W])
 		go_ahead(pool);
 	if (KEY_STATE[SDL_SCANCODE_DOWN] || KEY_STATE[SDL_SCANCODE_S])
@@ -63,23 +66,23 @@ static	void	open_doors(t_pool *pool)
 		pool->doors->blue_door_y = MAP_X;
 		pool->doors->time_door = time(NULL) + 2;
 	}
-	if (pool->map[MAP_X][MAP_Y] == 2 && KEY_STATE[SDL_SCANCODE_E])
-		pool->map[MAP_X][MAP_Y] = 0;
-	if (pool->map[MAP_X][MAP_Y] == 4 && KEY_STATE[SDL_SCANCODE_E])
-		pool->map[MAP_X][MAP_Y] = 0;
-	if (pool->map[MAP_X][MAP_Y] == 7 && KEY_STATE[SDL_SCANCODE_E])
-		pool->map[MAP_X][MAP_Y] = 0;
-	if (pool->map[MAP_X][MAP_Y] == 18 && KEY_STATE[SDL_SCANCODE_E])
-		pool->map[MAP_X][MAP_Y] = 0;
+	if (pool->mp == 0)
+	{
+		if (pool->map[MAP_X][MAP_Y] == 2 && KEY_STATE[SDL_SCANCODE_E])
+			pool->map[MAP_X][MAP_Y] = 0;
+		if (pool->map[MAP_X][MAP_Y] == 4 && KEY_STATE[SDL_SCANCODE_E])
+			pool->map[MAP_X][MAP_Y] = 0;
+		if (pool->map[MAP_X][MAP_Y] == 7 && KEY_STATE[SDL_SCANCODE_E])
+			pool->map[MAP_X][MAP_Y] = 0;
+		if (pool->map[MAP_X][MAP_Y] == 18 && KEY_STATE[SDL_SCANCODE_E])
+			pool->map[MAP_X][MAP_Y] = 0;
+	}
 }
 
 void			keys(t_pool *pool)
 {
 	KEY_STATE = SDL_GetKeyboardState(NULL);
 	SDL_PollEvent(&pool->sdl->event);
-	KEY_SCANCODE == SDL_SCANCODE_ESCAPE ? DONE = SDL_TRUE : SDL_FALSE;
-	if (EVENT_TYPE == SDL_QUIT)
-		DONE = SDL_TRUE;
 	moves(pool);
 	if (EVENT_TYPE == SDL_KEYDOWN && KEY_SCANCODE == SDL_SCANCODE_F && (CHECK))
 	{

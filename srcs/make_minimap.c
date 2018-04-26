@@ -53,4 +53,6 @@ void			make_minimap(t_pool *pool)
 		y++;
 	}
 	init_minimap_and_draw(pool);
+	SDL_DestroyTexture(BAR->mini_map_tex);
+	SDL_FreeSurface(BAR->mini_map_img);
 }

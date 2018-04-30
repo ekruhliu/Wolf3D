@@ -25,6 +25,11 @@ static	void	moves(t_pool *pool)
 		turn_right(pool);
 	if (KEY_STATE[SDL_SCANCODE_LEFT] || KEY_STATE[SDL_SCANCODE_A])
 		turn_left(pool);
+	if (KEY_STATE[SDL_SCANCODE_P])
+	{
+		pool->pos_x = pool->deff_pos_x;
+		pool->pos_y = pool->deff_pos_y;
+	}
 }
 
 static	void	take_weapon(t_pool *pool)

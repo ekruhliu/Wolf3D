@@ -244,6 +244,8 @@ typedef	struct		s_pool
 	int			*textures[22];
 	double		pos_x;
 	double		pos_y;
+	double		deff_pos_x;
+	double		deff_pos_y;
 	double		vector_x;
 	double		vector_y;
 	double		plane_x;

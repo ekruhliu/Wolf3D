@@ -40,26 +40,26 @@ static	void	part_two(t_pool *pool, char **tab)
 	int x;
 	int elem;
 
-	y = 0;
+	y = -1;
 	x = 0;
 	elem = 0;
-	while (y < pool->len_map_y)
+	while (++y < pool->len_map_y)
 	{
-		x = 0;
-		while (x < pool->len_map_x)
+		x = -1;
+		while (++x < pool->len_map_x)
 		{
 			if (tab[elem][0] == 'X')
 			{
 				pool->pos_y = (double)x + 0.1;
 				pool->pos_x = (double)y + 0.1;
+				pool->deff_pos_x = pool->pos_x;
+				pool->deff_pos_y = pool->pos_y;
 			}
 			MAP[y][x] = ft_atoi(tab[elem]);
 			if (MAP[y][x] > 22 || MAP[y][x] < 0)
 				MAP[y][x] = 0;
 			elem++;
-			x++;
 		}
-		y++;
 	}
 }
 
